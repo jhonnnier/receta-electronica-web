@@ -1,4 +1,4 @@
-.block-ui__wrapper {
+/*.block-ui__wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -6,14 +6,14 @@
   height: 100%;
   z-index: 99999;
   display: none;
-  /*
+  !*
   Change colors accordingly
-  */
+  *!
   background: #000;
   color: #fff;
-}
+}*/
 
-@media (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+@media (orientation: landscape) {
   .block-ui__wrapper {
     display: block;
     /*
@@ -38,7 +38,7 @@
   }
 }
 
-@media (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+@media (orientation: landscape) {
   .full-content__wrapper {
     overflow: hidden;
     position: fixed;
