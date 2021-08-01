@@ -9,6 +9,8 @@ import {Login} from "@components/login/model/login.model";
 import {AuthorizationService} from "@services/auth/authorization.service";
 import {CnxMessageService} from "@services/shared/cnx-message.service";
 
+declare let isMobile: any;
+
 @Component({
   selector: 'app-login-home',
   templateUrl: './login-home.component.html',
@@ -32,6 +34,10 @@ export class LoginHomeComponent {
   ) {
     this.getI18();
     this.loginFormInit();
+
+    if (isMobile()) {
+      document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
+    }
   }
 
   loginFormInit(): void {
