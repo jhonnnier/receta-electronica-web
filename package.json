@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "ng build --prod --base-href=/receta-electronica-web/ --output-path=docs",
-    "build2": "npm run build && git add . && git commit -m 'ensayo 15' && git push origin -u master",
+    "build2": "npm run build & git add . & git commit -m 'ensayo 15' & git push origin -u master",
     "ng": "ng",
     "start": "ng serve",
     "test": "ng test",

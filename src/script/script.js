@@ -8,8 +8,10 @@ function isMobile() {
 
 function landscape() {
     if (window.innerHeight > window.innerWidth) {
-        alert("Please use Landscape!");
+        return false;
     }
+
+    return true;
 }
 
 function passwordShow() {

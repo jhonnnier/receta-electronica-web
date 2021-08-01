@@ -25,6 +25,7 @@ export class LoginHomeComponent {
   message = '';
   errorShow = false;
   i18: any;
+  mobileMode = ''
 
   constructor(
     private authorizationService: AuthorizationService,
@@ -40,9 +41,9 @@ export class LoginHomeComponent {
     if (isMobile()) {
       // document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
     }
-
+    this.mobileMode = 'en landsacape';
     if (landscape()) {
-      alert('modo landscape');
+      this.mobileMode = 'en potrait';
     }
   }
 

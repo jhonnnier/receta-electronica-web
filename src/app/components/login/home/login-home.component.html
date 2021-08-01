@@ -1,3 +1,5 @@
+mobileMode: {{mobileMode}}
+
 <div class="p-container_full d_flex justify_content_center vertical-align_center">
   <div>
     <div class="p-col-12 p-shadow-1 login_content">
@@ -47,8 +49,8 @@
                        formControlName="password"
                        autocomplete="off">
                 <span id="passwordShow"
-                       class="text_color_primary text_underline showOrHide text_color_primary"
-                       onclick="passwordShow();">
+                      class="text_color_primary text_underline showOrHide text_color_primary"
+                      onclick="passwordShow();">
                   {{ 'LOGIN.mostrar' | translate }}
                 </span>
                 <ng-container *ngIf="errorShow">
