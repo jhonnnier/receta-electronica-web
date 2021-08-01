@@ -1,0 +1,50 @@
+<div class="p-grid p-p-3">
+  <div class="p-col-12">
+    <div class="icono">
+      <mat-icon matDialogClose style="align-self: end" (click)="cerrarModal(false)">clear</mat-icon>
+    </div>
+    <p class="titulo">{{ 'RECETA.envioReceta' | translate }}</p>
+  </div>
+  <div class="p-col-12">
+    <a class="mensaje">{{ 'RECETA.textoEnvioReceta' | translate }}</a>
+  </div>
+  <div class="p-col-12">
+    <form [formGroup]="searchForm" autocomplete="off">
+      <div class="contentEnvio">
+        <label class="lbl required" for="txtCorreo">{{ 'RECETA.correoElectronico' | translate }}</label>
+        <input class="txt"
+               type="text"
+               id="txtCorreo"
+               formControlName="correo"
+               (keyup)="bCorreo = $event.target.value !== '' ? false : true"
+               [marcarError]="hasErrorControl('correo','obligatorio') || hasErrorControl('correo','pattern')"
+               required/>
+
+        <div class="dvErrorCorreo" *ngIf="correoInvalido">
+          <app-error-field [mensajeCampo]='"correoInvalido"'></app-error-field>
+        </div>
+      </div>
+      <div class="p-grid p-mt-4">
+        <div class="p-col-12 p-sm-6">
+          <button pButton
+                  pRipple
+                  type="button"
+                  class="btn-block btn_color_primary"
+                  [disabled]="!formControls.correo.value"
+                  label="{{ 'BOTONES_TITULOS.btnEnviar' | translate }}"
+                  (click)="confirmar()"
+          ></button>
+        </div>
+        <div class="p-col-12 p-sm-6">
+          <button pButton
+                  pRipple
+                  type="button"
+                  class="btn-block btn_border_primary"
+                  label="{{ 'RECETA.btnCancelar' | translate }}"
+                  (click)="regresar()"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+@import '_all';
+@import 'mixins';
+
+.clsEstadoGenerada {
+    background-color: #DDE6EB;
+    color: #2C4352;
+    width: 110px;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+}
+
+.clsEstadoRevision {
+    background-color: #C6D5DE;
+    color: #041C2B;
+    width: 120px;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+}
+
+.clsEstadoAprobada {
+    background-color: #D4CCFF;
+    color: #221B4D;
+    width: 110px;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+}
+
+.clsEstadoEnviada {
+    background-color: #ABF2FF;
+    color: #004C59;
+    width: 105px;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+}
+
+.clsEstadoRechazada {
+    background-color: #FFB8BE;
+    color: #610008;
+    width: 120px;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+}
+
+.clsEstadoDispensada {
+    background-color: #BFFFDE;
+    color: #004D25;
+    width: 120px;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+}
+
+.clsEstadoEnvioPendiente {
+    background-color: #FFF1AB;
+    color: #5C2E00;
+    width: 140px;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+}
+
+.clsEstadoVencida {
+    background-color: #FFEBED;
+    color: #610008;
+    width: 85px;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+}
+
+.staticContainer {
+
+    top: 72px;
+    background-color: $mainBg;
+    position: sticky;
+    z-index: 100;
+    padding-bottom: 5px;
+
+    .staticContainer__breadcrumbsCls {
+        @include d-flex-row();
+        @include d-flex-v-center();
+    }
+
+    .staticContainer__breadcrumbsCls--imgChevronRight {
+        height: 18px;
+        width: 18px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .staticContainer__title {
+        display: flex;
+        align-items: baseline;
+
+        .staticContainer__title--iconDV {
+            position: relative;
+            top: 5px;
+        }
+
+        .staticContainer__title--imgArrowBack {
+            height: 24px;
+            width: 24px;
+            cursor: pointer;
+        }
+
+        .staticContainer__title--title {
+            font-size: $fontSizeConsultaEnc;
+            font-weight: bold;
+            color: $colorFontConsultaEnc;
+            margin-left: 15px;
+            margin-top: 25px;
+            padding-right: 15px;
+        }
+    }
+
+    .staticContainer__headerRecetaSiniestro {
+
+        .staticContainer__headerRecetaSiniestro--divContent {
+            display: flex;
+            align-items: baseline;
+            padding-top: 10px;
+
+            .staticContainer__headerRecetaSiniestro--label {
+                font-weight: bold;
+                padding-right: 10px;
+            }
+
+            .staticContainer__headerRecetaSiniestro--texto {
+                padding-right: 10px;
+            }
+        }
+    }
+}

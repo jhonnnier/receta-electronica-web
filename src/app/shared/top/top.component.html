@@ -1,0 +1,27 @@
+<div class="conexiaBar">
+  <div class="conexiaBar__blue30"></div>
+  <div class="conexiaBar__blue50"></div>
+  <div class="conexiaBar__blue100"></div>
+  <div class="conexiaBar__orange50"></div>
+  <div class="conexiaBar__orange100"></div>
+</div>
+<div class="headerCls">
+  <header>
+    <div class="headerCls__imgConexia">
+      <img src="./../assets/images/Grupo 310.svg" alt="imgLogoConexia" />
+    </div>
+    <div class="headerCls__userInfo" *ngIf="mostrarUsuario" [matMenuTriggerFor]="menu" #t="matMenuTrigger">
+      <div class="acronimoUsuario">{{badge}}</div>      
+      <div style="cursor: pointer;">{{userName}}</div>
+      <mat-icon style="cursor: pointer;" *ngIf="!t.menuOpen">keyboard_arrow_down</mat-icon>
+      <mat-icon style="cursor: pointer;" *ngIf="t.menuOpen">keyboard_arrow_up</mat-icon>
+      <mat-menu #menu="matMenu" class="menu" xPosition="before">
+        <div class="triangle-up"></div>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span (click)="logout()">{{ 'cerrarSesion' | translate }}</span>
+        </button>
+      </mat-menu>
+    </div>
+  </header>
+</div>

@@ -1,0 +1,54 @@
+@import '_all';
+@import 'mixins';
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+.verDetalle__content {
+    width: 100%; 
+    padding: 0px 5% 0px 4%;
+
+    .lbl {
+        font-size: $fontSizeLblConsultaEnc;
+        font-weight: bold;
+        color: $colorFontConsultaEnc;
+        padding-right: 10px;
+    }
+
+    .verDetalle__content--tituloDiagnostico {
+        font-size: 20px; 
+        font-weight: bolder;
+        padding: 60px 0px 20px 0px;
+    }
+
+    .verDetalle__content--listaDx {
+        font-weight: normal;
+
+        .verDetalle__content--NumerallistaDx {
+            font-weight: bolder;
+            padding-right: 10px;
+        }
+    }
+
+    .verDetalle__content--tituloMedicamento {
+        font-size: 20px; 
+        font-weight: bolder;
+        padding: 40px 0px 20px 0px;
+    }
+
+    .verDetalle__content__listaMed--titulo {
+        font-weight: bolder;
+    }
+    
+    .verDetalle__content__listaMed--indicaciones {
+        width: 70%;
+        overflow-wrap: break-word;
+    }
+
+    .verDetalle__content--Medico {
+        font-size: 16px; 
+        font-weight: bolder;
+        padding-top: 40px;
+    }
+}

@@ -1,0 +1,19 @@
+<app-top></app-top>
+<!--<app-sidebar></app-sidebar>-->
+<div class="main-content-sinMenu">
+    <main>
+        <div class="main-content-sinMenu__content">
+            <div class="breadcrumbsCls">
+                <span routerLink="/pages/receta/buscarReceta" class="txtBreadcrumbs">{{ 'BREADCRUMBS.recetas' | translate }}</span>
+                <img class="breadcrumbsCls--imgChevronRight" src="./../../../assets/icons/Double_chevron_right_24px.svg" alt="imgSeparadorBreadcrumbs" />
+                <span class="txtBreadcrumbsActive">{{ 'BREADCRUMBS.trabajadores' | translate }}</span>
+            </div>
+            <app-consulta-encabezado (sinResultado)="sinResultado = $event"
+                (limpiarResultado)="limpiarResultado = $event"
+                (listarAfiliados)="getLstAfiliados($event)">
+            </app-consulta-encabezado>
+            <app-consulta-detalle #consultaDetalle></app-consulta-detalle>
+        </div>
+    </main>
+</div>
+<app-footer></app-footer>

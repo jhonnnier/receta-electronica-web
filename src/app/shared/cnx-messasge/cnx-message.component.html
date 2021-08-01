@@ -1,0 +1,33 @@
+<ng-container *ngIf="text">
+  <div class="alert">
+    <div class="p-field p-fluid">
+      <p-messages [severity]="type">
+        <ng-template pTemplate
+                     class="b-none">
+          <div class="p-col-11 div_aling_vertical_center">
+            <div>
+              <img src="../../assets/icons/system-messages/icon-{{type}}.svg"
+                   width="24px"
+                   height="24px">
+            </div>
+            <div class="p-ml-2 alert_{{type}}">
+              <span class="custom-message">{{text}}</span>
+              <small *ngIf="extender"
+                     class="custom-message cursor_pointer"
+                     (click)="onShowText()">
+                {{showText ? 'ver más' : 'ver menos'}}
+              </small>
+            </div>
+          </div>
+          <div class="p-col-1 text_align_end">
+            <i class="pi pi-times cursor_pointer alert_close alert_close_{{type}}"
+               (click)="onClose()"
+            ></i>
+          </div>
+        </ng-template>
+      </p-messages>
+    </div>
+  </div>
+</ng-container>
+
+

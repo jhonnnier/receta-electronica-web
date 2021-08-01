@@ -1,0 +1,87 @@
+<div class="tabsContent">
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <p class="tab-label">{{ 'VER_DETALLE_AUDITOR.receta' | translate }}</p>
+            </ng-template>
+            <div class="tabScroll">
+                <div class="tab-layout">
+                    <div class="tabsContent__trabajador-content">
+                        <p class="trabajador-info-title">{{ 'VER_DETALLE_AUDITOR.diagnosticos' | translate }}</p>
+                        <br />
+                        <div *ngIf="setRecetaTrabajadorDTO?.diagnosticos.length > 0">
+                            <ul class="tabsContent--listaDx">
+                                <li *ngFor="let dx of setRecetaTrabajadorDTO.diagnosticos; let i = index"><p><span class="tabsContent--NumerallistaDx">{{ i + 1 }}.</span>{{ dx.codigo }} - {{ dx.descripcion }}</p></li>
+                            </ul>
+                        </div>
+                        <br />
+                        <label class="lblRpMedicamento">{{ 'VER_DETALLE_AUDITOR.rp' | translate }}</label>
+                        <div class="tabsContent__medicamento" *ngIf="setRecetaTrabajadorDTO?.medicamentos.length > 0">
+                            <ul>
+                                <li *ngFor="let med of setRecetaTrabajadorDTO?.medicamentos">
+                                    <p class="tabsContent__listaMed--titulo">{{ med.monodroga }} {{ med.presentacion }} {{ '(' + med.nombre + ')' }} - Cantidad: {{ med.cantidadEnvases }}</p>
+                                    <p class="tabsContent__listaMed--indicaciones">{{ obtenerPosologia(med.cantidadDosis, med.dosisMedicamento, med.cantidadFrecuencia, med.frecuenciaMedicamento, med.indicaciones) }}</p>
+                                    <br />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tabsContent__firma">
+                            <p class="trabajador-info-title">{{ 'VER_DETALLE_AUDITOR.prestador' | translate }}</p>
+                            <br />
+                            <p class="tabsContent--Medico">{{ setRecetaTrabajadorDTO?.prestador?.cuit + ' - ' +  setRecetaTrabajadorDTO?.prestador?.razonSocial}}</p>
+                        </div>
+                        <br />
+                        <div class="tabsContent__firma">
+                            <p class="tabsContent--Medico">{{ 'VER_DETALLE_AUDITOR.ttoMedico' | translate }} {{ setRecetaTrabajadorDTO?.medico?.nombreCompleto }}</p>
+                            <span class="lbl">{{ 'VER_DETALLE_AUDITOR.matriculaMedico' | translate }} </span><p>{{ setRecetaTrabajadorDTO?.medico?.nroMatricula }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label >
+                <p class="tab-label">{{ 'VER_DETALLE_AUDITOR.trabajador' | translate }}</p>
+            </ng-template>
+            <div class="tab-layout">
+                <div class="tabsContent__trabajador-content">
+                    <p class="trabajador-info-title">{{ 'VER_DETALLE_AUDITOR.infoPersonal' | translate }}</p>
+                    <br />
+                    <label class="lbl">{{ 'VER_DETALLE_AUDITOR.apeNombres' | translate }}</label>
+                    <p>{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.apellidos }}, {{
+                        setRecetaTrabajadorDTO?.siniestro?.afiliado?.nombres }}</p>
+
+                    <label class="lbl">{{ 'VER_DETALLE_AUDITOR.tpoNumDocumentos' | translate }}</label>
+                    <p>{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.tipoDocumento }} - {{
+                        setRecetaTrabajadorDTO?.siniestro?.afiliado?.documento | number }}</p>
+
+                    <label class="lbl">{{ 'VER_DETALLE_AUDITOR.sexo' | translate }}</label>
+                    <p>{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.sexo === 'M' ? 'Masculino' : 'Femenino' }}</p>
+
+                    <label class="lbl">{{ 'VER_DETALLE_AUDITOR.edad' | translate }}</label>
+                    <p>{{ tieneAnios(setRecetaTrabajadorDTO?.siniestro?.afiliado?.fechaNacimiento) }} {{ tieneAnios(setRecetaTrabajadorDTO?.siniestro?.afiliado?.fechaNacimiento) === 1 ? 'Año' : 'Años' }}</p>
+                    <br />
+                    <p class="contacto-info-title">{{ 'VER_DETALLE_AUDITOR.contacto' | translate }}</p>
+                    <br />
+                    <label class="lbl">{{ 'VER_DETALLE_AUDITOR.email' | translate }}</label>
+                    <p>{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.email }}</p>
+                    <label class="lbl">{{ 'VER_DETALLE_AUDITOR.telefono' | translate }}</label>
+                    <p>{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.telefono }}</p>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <p class="tab-label">{{ 'VER_DETALLE_AUDITOR.siniestro' | translate }}</p>
+            </ng-template>
+            <div class="tab-layout">
+                <div class="tabsContent__trabajador-content">
+                    <p class="siniestro-info-title">{{ 'VER_DETALLE_AUDITOR.numSiniestro' | translate }} {{ setRecetaTrabajadorDTO?.siniestro?.numeroSiniestro }}</p>
+                    <label class="lbl">{{ 'VER_DETALLE_AUDITOR.fechaSiniestro' | translate }}</label>
+                    <p>{{ setRecetaTrabajadorDTO?.siniestro?.fechaSiniestro | date:'dd/MM/yyyy' }}</p>
+                    <p class="siniestro-descripcion">{{ setRecetaTrabajadorDTO?.siniestro?.descripcion }}</p>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

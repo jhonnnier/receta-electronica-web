@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap');
+@import '_all';
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+
+.main-content {
+    position: relative;
+    margin-left: 232px;
+    background: $mainBg;
+}
+
+main {
+    margin-top: 72px;
+    min-height: 100vh;
+}
+
+.main-content__content {
+    padding: 2rem;
+}
+
+.main-content-sinMenu {
+    position: relative;
+    background: $mainBg;
+}
+
+.main-content-sinMenu__content {
+    padding: 2rem;
+}
+
+html, body { height: 100%; }
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.backgroundPaginator {
+    background: $mainBg;
+    color: black;
+    font-weight: bold;
+}
+
+.labelTable {
+    color: $colorFontLabelTable;
+    font-size: $fontSizeLabelTable;
+    font-weight: bold;
+}
+
+.txtBreadcrumbs {
+    color: $colorLinkBreadCrumb;
+    text-decoration: underline;
+    font-size: $fontSizeLabelTable;
+    cursor: pointer;
+}
+
+.txtBreadcrumbsActive {
+    color: $colorNameBreadCrumbs;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    font-style: italic;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-style: italic;
+}
+
+::placeholder {
+    font-style: italic;
+}
+
+.error {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0px;
+    color: $colorR700;
+    opacity: 1;
+    gap: 5px;
+    margin-top: 3px;
+    width: 100%;
+}
+
+.custom-modalbox {
+  mat-dialog-container {
+    border-top: 8px solid $colorDvContenedorReceta;
+    width: 600px;
+  }
+}
+
+.required:after {
+    content:" *";
+    color: rgb(206, 2, 2);
+}
+
+.btnDisable {
+    background: $colorBtnDisable;
+    height: 40px;
+    border-radius: 4px;
+    width: 100%;
+    color: white;
+    border: none;
+    margin-top: 30px;
+    outline: none;
+    font-size: $fontSizeBtn; 
+    display: block;   
+}
+
+.espacio {
+    width: 70px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(223, 222, 222);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar{
+    height: 9px;
+    overflow: visible;
+    width: 9px;
+}
+
+::-webkit-scrollbar-button{
+    height: 0;
+    width: 0;
+}
+
+::-webkit-scrollbar-track{
+    background-clip: padding-box;
+    box-shadow: inset 1px 0 0 #e6e6e6
+}
+
+::-webkit-scrollbar-track:hover{
+    background-color: #f3f3f3;
+    box-shadow: inset 1px 0 0 #e6e6e6
+}
+
+::-webkit-scrollbar-track:active{
+    background-color:#f3f3f3;
+    box-shadow:inset 1px 0 0 #dcdcdc,
+    inset -1px 0 0 #eeeeee
+}
+
+::-webkit-scrollbar-thumb { 
+    background-color:#cccccc;
+    background-clip:padding-box;
+    border:solid transparent;
+    border-width:1px 1px 1px 0px;
+    min-height:28px;
+    padding:100px 0 0;
+    box-shadow:inset 1px 1px 0 #e6e6e6,
+    inset 0 -1px 0 #eeeeee
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color:#999999;
+    box-shadow:inset 1px 1px 1px #c0c0c0
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color:#808080;
+    box-shadow:inset 1px 1px 3px #a6a6a6
+}
+

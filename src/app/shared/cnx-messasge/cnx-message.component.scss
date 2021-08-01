@@ -1,0 +1,44 @@
+@import '_all';
+@import 'mixins';
+
+.alert {
+
+  &_info {
+    color: $colorD600-50;
+  }
+
+  &_success {
+    color: $colorG700;
+  }
+
+  &_warning {
+    color: $colorM600;
+  }
+
+  &_error {
+    color: $colorR600-50;
+  }
+
+  &_close {
+    font-weight: bold;
+
+    &_info {
+      color: $colorD600-50;
+    }
+
+    &_success {
+      color: $colorG700;
+    }
+
+    &_warning {
+      color: $colorM600;
+    }
+
+    &_error {
+      color: $colorR600-50;
+    }
+
+  }
+}
+
+

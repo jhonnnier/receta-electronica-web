@@ -1,0 +1,87 @@
+@import '_all';
+@import 'mixins';
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+.clsflexRight {
+    @include d-flexRight();
+}
+
+.btnAccion {
+    background: $colorBtnCrearReceta;
+    height: 40px;
+    border-radius: 4px;
+    width: 30%;
+    color: $colorBgwhite;
+    border: none;
+    margin-top: 15px;
+    outline: none;   
+    cursor: pointer;
+}
+
+.btnAccion:hover {
+    background: $colorBtnHoverCrearReceta;
+    cursor: pointer;
+} 
+
+.linkAccion {
+    margin-top: 25px;
+    padding-right: 30px;
+    text-decoration: none;
+    outline: none;
+    color: $colorBtnBusqueda;
+    cursor: pointer;
+}
+
+.linkAccion:hover {
+    color: $colorBtnHoverBusqueda;
+}
+
+.modal__content {
+    height: 270px;
+    width: 589px;
+    border-radius: 4px;
+    background: $colorBgwhite;
+    position: relative;
+
+    .modal__content--borderTopModal {
+        background: $colorBorderModal; 
+        height: 8px; 
+        width:  637px;
+        border-radius: 4px 4px 0px 0px; 
+        margin-bottom: 10px;
+        position: absolute;
+        top: -24px;
+        left: -24px;
+    }
+
+    .modal__content--dvClose {
+        @include d-flex-row();
+        margin-bottom: 60px;
+
+        .modal__content--btnClose {
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+        }
+    }
+
+    .modal__content--title {
+        padding-bottom: 20px;
+        text-align: left;
+        font-size: $fontSizeTituloModal;
+        font-weight: bold;
+    }
+
+    .modal__content--description {
+        padding-bottom: 20px;
+        text-align: left;
+        font-size: $fontSizeDescriptionModal;
+    }
+}

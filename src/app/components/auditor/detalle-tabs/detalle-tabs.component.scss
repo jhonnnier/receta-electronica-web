@@ -1,0 +1,102 @@
+@import "_all";
+@import "mixins";
+
+::ng-deep .mat-tab-body-content {
+  height: 58vh !important;
+  overflow: auto;
+}
+
+.tabsContent {
+  margin-top: 1%;
+
+  .tabsContent__trabajador-content {
+    padding-left: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .lbl {
+    font-size: $fontSizeLblConsultaEnc;
+    font-weight: bold;
+    color: $colorFontConsultaEnc;
+    padding-right: 10px;
+    float: left;
+  }
+
+  .tab-label {
+    font-size: 16px;
+    font-weight: bolder;
+    color: #1e3645;
+  }
+
+  .tab-layout {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    opacity: 1;
+    min-height: 574px;
+    max-width: 100%;
+  }
+
+  .trabajador-info-title {
+    font-size: 20px;
+    font-weight: bolder;
+    color: $colorFontConsultaEnc;
+  }
+
+  .contacto-info-title {
+    font-size: 20px;
+    color: $colorFontConsultaEnc;
+  }
+
+  .tabsContent--listaDx {
+    font-weight: normal;
+    font-size: 16;
+    color: $colorFontRpMedVerDetalleAuditor;
+
+    .tabsContent--NumerallistaDx {
+        font-weight: bolder;
+        padding-right: 10px;
+    }
+  }
+
+  .lblRpMedicamento {
+    font-size: $fontSizeRpMedVerDetalleAuditor;
+    color: $colorFontRpMedVerDetalleAuditor;
+    font-weight: bolder;
+  }
+
+  .tabsContent__medicamento {
+    padding-top: 15px;
+  }
+
+  .tabsContent__listaMed--titulo {
+    font-size: 16;
+    font-weight: bolder;
+    color: $colorFontRpMedVerDetalleAuditor;
+  }
+
+  .tabsContent__listaMed--indicaciones {
+      width: 70%;
+      overflow-wrap: break-word;
+  }
+
+  .tabsContent--Medico {
+      font-size: 16px;
+      font-weight: bolder;
+      padding-top: 5px;
+      color: $colorFontRpMedVerDetalleAuditor;
+  }
+
+  .siniestro-info-title {
+    font-size: 20px;
+    font-weight: bolder;
+    color: $colorFontConsultaEnc;
+    padding-bottom: 10px;
+  }
+
+  .siniestro-descripcion {
+    font-size: 16px;
+    color: $colorFontConsultaEnc;
+    padding-top: 30px;
+  }
+
+}

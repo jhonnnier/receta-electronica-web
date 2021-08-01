@@ -1,0 +1,29 @@
+@import "./../../../styles/base/all";
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background: $colorBgwhite;
+    height: $sizeFooter;
+    @include d-flex-center();
+    justify-content: center;
+    border-top: 2px solid $borderLayout;
+}
+
+.footerCls__copyright, .footerCls__derechos {
+    font-size: 13px;
+    color: $colorFontFooter;
+    letter-spacing: 0px;
+    opacity: 1;
+}
+
+.footerCls__imgConexia {
+    height: 18px;
+    width: auto;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

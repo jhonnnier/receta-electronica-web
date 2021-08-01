@@ -1,0 +1,24 @@
+<div class="columns modal__content">
+    <div class="column is-12">
+        <div class="modal__content--borderTopModal"></div>
+        <div class="column is-12">
+            <div class="modal__content--dvClose">
+                <mat-icon class="modal__content--btnClose" aria-hidden="false" aria-label="iconAdd" matDialogClose>clear</mat-icon>
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="column is-12">
+                <p class="modal__content--title">{{ textTitle | translate }}</p>
+            </div>
+            <div class="column is-12">
+                <p class="modal__content--description">{{ textDescription | translate }}</p>
+            </div>
+            <div class="autocompleteContainer__elements--opciones column is-12">
+                <div class="clsflexRight">
+                    <a (click)="accionLink()" class="linkAccion">{{ textLink | translate }}</a>
+                    <button matDialogClose type="submit" class="btnAccion">{{ textButton | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

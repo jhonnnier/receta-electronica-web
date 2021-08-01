@@ -1,0 +1,30 @@
+@import "./../../../styles/base/all";
+
+.sidebar {
+    height: 91%;
+    width: $widthSidebar;
+    position: fixed;
+    left: 0;
+    top: 72px;
+    z-index: 100;
+    background: $colorBgwhite;
+    border-right: 2px solid $borderLayout;
+}
+
+.sidebar li {
+    height: 48px;
+    width: 240px;
+    @include d-flex-center();
+}
+
+.sidebar a {
+    color: black;
+    font-size: $fontSizeSideBar;
+    margin-left: 20px;
+    margin-top: 50px;
+    @include d-flex-center();
+}
+
+.sidebar a span:last-child {
+    padding-left: .6rem;
+}

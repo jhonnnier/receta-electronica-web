@@ -1,0 +1,68 @@
+<div class="verDetalle__content">
+    <div class="verDetalle__content--borderReceta">
+        <div class="columns">
+            <div class="column is-12">
+                <div class="clsFlexRow">
+                    <div class="column is-6 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.apellidosNombres' | translate }}: 
+                            <span class="verDetalle__content--apeNombres">
+                                {{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.apellidos }}, {{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.nombres }}
+                            </span>
+                        </label>
+                    </div>
+                    <div class="column is-6 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.tipoDocNumero' | translate }}:
+                            <span class="verDetalle__content--apeNombres">
+                                {{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.tipoDocumento }} - {{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.documento }}
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                &nbsp;
+                <div class="clsFlexRow">
+                    <div class="column is-6 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.sexo' | translate }}:</label>
+                        <p>{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.sexo === 'M' ? 'Masculino' : 'Femenino' }}</p>
+                    </div>
+                    <div class="column is-6 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.edad' | translate }}:</label>
+                        <p>{{ tieneAnios(setRecetaTrabajadorDTO?.siniestro?.afiliado?.fechaNacimiento) }} {{ tieneAnios(setRecetaTrabajadorDTO?.siniestro?.afiliado?.fechaNacimiento) === 1 ? 'Año' : 'Años' }}</p>
+                    </div>
+                </div>
+                <div class="clsFlexRow verDetalle__content--itemsCardInsideSpace">
+                    <div class="column is-6 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.correoElectronico' | translate }}:</label>
+                        <p>{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.email }}</p>
+                    </div>
+                    <div class="column is-6 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.telefono' | translate }}:</label>
+                        <p>{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.telefono }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="verDetalle__content--tituloSiniestro">{{ 'DETALLE_RECETA.siniestroAsociado' | translate }}</p>
+    <div class="verDetalle__content--borderSiniestro">
+        <div class="columns">
+            <div class="column is-12">
+                <div class="clsFlexRow">
+                    <div class="column is-6 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.idSiniestro' | translate }}:</label>
+                        <p>{{ setRecetaTrabajadorDTO?.siniestro?.numeroSiniestro }}</p>
+                    </div>
+                    <div class="column is-6 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.fechaSiniestro' | translate }}:</label>
+                        <p>{{ setRecetaTrabajadorDTO?.siniestro?.fechaSiniestro | date:'dd/MM/yyyy' }}</p>
+                    </div>
+                </div>
+                <div class="clsFlexRow verDetalle__content--itemsCardInsideSpace">
+                    <div class="column is-12 verDetalle__content--itemsCard">
+                        <label class="lbl">{{ 'DETALLE_RECETA.descSiniestro' | translate }}:</label>
+                        <p class="verDetalle__content--descSiniestro">{{ setRecetaTrabajadorDTO?.siniestro?.descripcion }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

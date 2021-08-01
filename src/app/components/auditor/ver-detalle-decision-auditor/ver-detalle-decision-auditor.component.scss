@@ -1,0 +1,141 @@
+@import '_all';
+@import 'mixins';
+
+.dvContainer {
+  border-top: 4px solid $colorBorderTopExportar;
+  margin-top: 5px;
+  height: 300px;
+  border-bottom: 1px solid $colorBorderBottomAlertas;
+
+  .observacionesContainer__elements {
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+    .lbl {
+      font-size: $fontSizeLblConsultaEnc;
+      font-weight: bold;
+      color: $colorFontConsultaEnc;
+      margin-left: 2px;
+    }
+
+    .txtObervacion {
+      margin-top: 10px;
+      height: 100px;
+      border-radius: 4px;
+      border: 1px solid $colorTextBoxConsultaEnc;
+      width: 100%;
+      outline: none;
+      padding: 10px 10px 10px 10px;
+      font: normal normal normal 16px/24px Open Sans;
+      resize: none;
+    }
+
+    .info {
+      text-align: left;
+      font: italic normal normal 14px/19px Open Sans;
+      letter-spacing: 0px;
+      color: #1E3645;
+      opacity: 100;
+    }
+  }
+}
+
+.contenedorBotones{
+  display: flex;
+  justify-content: flex-end;
+  &__botonBlanco {
+    height: 40px;
+    width: 125px;
+    border-radius: 4px;
+    margin-top: 30px;
+    outline: none;
+    cursor: pointer;
+    font: normal normal normal 16px/24px Open Sans;
+    letter-spacing: 0px;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    background-color: $colorW700;
+    border: 1px solid $colorB700;
+    margin-right: 10px;
+    svg {
+      fill: $colorB700 !important;
+      align-self: center;
+    }
+    a {
+      align-self: center;
+      color: $colorB700;
+      margin-right: 10px;
+    }
+  }:disabled {
+      cursor: not-allowed;
+      svg {
+        border: none;
+        fill: $colorB700-50 !important;
+      }
+      a {
+        border: none;
+      }
+      border: 1px solid $colorB700-50;
+      color: $colorB700-50;
+      opacity: 1;
+    }
+
+  &__botonBlanco:hover {
+    svg {
+      border: none;
+      fill: #02588C !important;
+      color: $colorB800-hover;
+    }
+    a {
+      border: none;
+      color: $colorB800-hover;
+    }
+    border: 1px solid $colorB800-hover;
+    opacity: 1;
+  }
+
+  &__botonAzul {
+    height: 40px;
+    width: 125px;
+    border-radius: 4px;
+    margin-top: 30px;
+    outline: none;
+    cursor: pointer;
+    font: normal normal normal 16px/24px Open Sans;
+    letter-spacing: 0px;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    border: 1px solid $colorB700;
+    color: $colorW700;
+    background-color: $colorB700;
+    svg {
+      fill: $colorW700 !important;
+      align-self: center;
+    }
+    a {
+      align-self: center;
+    }
+  }
+
+  &__botonAzul:hover {
+    border: 1px solid $colorB800-hover;
+    background-color: $colorB800-hover;
+    color: $colorW700;
+    opacity: 1;
+  }
+
+}
+
+.divObservaciones {
+  margin-top: 10px;
+}
+
+.labelObservaciones {
+  color: #596C78;
+  position: relative;
+  font: italic normal normal 16px/22px Open Sans;
+  top: 90px;
+  left: 20px;
+}

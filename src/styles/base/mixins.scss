@@ -1,0 +1,53 @@
+@mixin d-flex {
+    display: flex;
+}
+
+@mixin d-flexRow {
+    flex-direction: row;
+}
+
+@mixin d-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin d-flex-center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin d-flex-v-center {
+    align-items: center;
+}
+
+@mixin d-flex-h-center {
+    justify-content: center;
+}
+
+@mixin d-flex-between {
+    justify-content: space-between;
+}
+
+@mixin d-flexWrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@mixin d-flex-wrap {
+    flex-wrap: wrap;
+}
+
+@mixin d-flexh-center {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin d-flexRight {
+    display: flex; 
+    justify-content: flex-end;
+}
+
+@mixin d-flexLeft {
+    display: flex; 
+    justify-content: flex-start;
+}

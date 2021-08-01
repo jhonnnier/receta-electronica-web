@@ -1,0 +1,55 @@
+@import '_all';
+@import 'mixins';
+
+.dvContainer {
+    border-top: 4px solid $colorBorderTopExportar;
+    margin-top: 5px;
+    height: 300px;
+    border-bottom: 1px solid $colorBorderBottomAlertas;
+    overflow: auto;
+
+    .textoAlertas {
+        font-size: 16px;
+        color: #1E3645;
+        padding-left: 20px;
+    }
+
+    .borderListado {
+        padding: 6px;
+        border-bottom: 1px solid $colorBorderBottomListAlertas;
+        margin-bottom: 6px;
+    }
+
+    .botonLink {
+        margin-top: 5px;
+        cursor: pointer;
+        color:  $colorB700;
+        align-self: center;
+        text-decoration: underline;
+    }
+    
+    .botonLink:hover  {
+        color:  $colorB800-hover;
+    }
+}
+
+.alertaCritica {
+    font-size: 13px;
+    color: #610008;
+    background-color: #FFB8BE;
+    padding-left: 20px;
+    border-radius: 5px;
+    padding: 0px 10px 0px 10px;
+}
+
+.parrafoCritica {
+    display: initial;
+}
+
+.labelObservaciones {
+    color: #596C78;
+    position: relative;
+    font: italic normal normal 16px/22px Open Sans;
+    top: 90px;
+    left: 80px;
+}

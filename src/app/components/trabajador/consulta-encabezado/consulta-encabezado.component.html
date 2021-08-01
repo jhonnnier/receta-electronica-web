@@ -1,0 +1,101 @@
+<div class="consultaContainer">
+    <div class="consultaContainer__title">
+        <img src="./../../../../assets/icons/Arrow_back_24px.svg" alt="imgArrowBack" class="consultaContainer__title--imgArrowBack" (click)="regresar()" />
+        <span class="consultaContainer__title--title">{{ 'CONSULTAR_TRABAJADOR.titulo' | translate  }}</span>
+    </div>
+    <form [formGroup]="searchForm" autocomplete="off">
+        <div class="columns consultaContainer__elements">
+            <div class="column is-4">
+                <label class="lbl required" for="txtFinanciador">{{ 'CONSULTAR_TRABAJADOR.financiador' | translate  }}</label>
+                <select class="select" id="txtFinanciador" 
+                    (change)="setFinanciador($event.target.value)" 
+                    formControlName="financiador"
+                    [marcarError]="hasErrorControl('financiador','obligatorio')">
+                    <option value="">{{ 'Seleccione' | translate}}</option>
+                    <option *ngFor="let financiador of lstFinanciadores | async"  value="{{financiador.id}}">{{financiador.razonSocial}}</option>
+                </select>
+                <div *ngIf="searchForm.controls.financiador.errors?.obligatorio">
+                    <app-error-field [mensajeCampo]='"CONSULTAR_TRABAJADOR.financiadorObligatorio"'></app-error-field>
+                </div>
+            </div>
+        </div>
+        <div class="columns consultaContainer__elements">
+            <div class="column is-4">
+                <div class="clsFlexRow">
+                    <div class="column is-6">
+                        <div>
+                            <label class="lbl" for="txtApellido">{{ 'CONSULTAR_TRABAJADOR.apellidos' | translate  }}</label>
+                            <input class="txt" 
+                                type="text" 
+                                id="txtApellido" 
+                                formControlName="apellidos" 
+                                placeholder="Apellidos"
+                                (keyup)="bNombre = $event.target.value !== '' ? false : true"
+                                [marcarError]="hasErrorControl('apellidos','obligatorio')" />
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div>
+                            <label class="lbl" for="txtName">{{ 'CONSULTAR_TRABAJADOR.nombres' | translate  }}</label>
+                            <input class="txt" 
+                                type="text" 
+                                id="txtName" 
+                                formControlName="nombres" 
+                                placeholder="Nombres"
+                                (keyup)="bNombre = $event.target.value !== '' ? false : true"
+                                [marcarError]="hasErrorControl('nombres','obligatorio')" />
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="searchForm.controls.apellidos.errors?.obligatorio">
+                    <app-error-field [mensajeCampo]='"CONSULTAR_TRABAJADOR.nombresObligatorios"'></app-error-field>
+                </div>
+            </div>
+            <div class="column is-3">
+                <div class="column is-12">
+                    <label class="lbl" for="txtTipodoc">{{ 'CONSULTAR_TRABAJADOR.tipoDocNumero' | translate  }}</label>
+                    <div class="clsFlexRow">
+                        <div class="column is-6">
+                            <select class="select" id="txtTipodoc"
+                                (change)="bDocumento = $event.target.value !== '' ? false : true"  
+                                formControlName="tipoDocumento"
+                                [marcarError]="hasErrorControl('tipoDocumento','obligatorio')">
+                                <option value="">{{ 'Seleccione' | translate}}</option>
+                                <option id="{{tpDoc.codigo}}" 
+                                *ngFor="let tpDoc of lstTipoDocumento$ | async" value="{{tpDoc.codigo}}">
+                                    {{ tpDoc.descripcion }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="column is-6">
+                            <input class="txt" 
+                                type="text" 
+                                id="txtNumDoc" 
+                                formControlName="numDocumento" 
+                                placeholder="N° de documento"
+                                (keyup)="bDocumento = $event.target.value !== '' ? false : true"
+                                [marcarError]="hasErrorControl('numDocumento','obligatorio')" />
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="searchForm.controls.numDocumento.errors?.obligatorio">
+                    <app-error-field [mensajeCampo]='"CONSULTAR_TRABAJADOR.tpoNumeroDocumentoObligatorios"'></app-error-field>
+                </div>
+            </div>
+            <div class="column is-2">
+                <label class="lbl" for="txtSiniestro">{{ 'CONSULTAR_TRABAJADOR.siniestro' | translate  }}</label>
+                <input class="txt" 
+                    type="text" 
+                    id="txtSiniestro" 
+                    (keyup)="bSiniestro = $event.target.value !== '' ? false : true"
+                    formControlName="siniestro"/>
+            </div>
+            <div class="column is-2 linkLimpiarBusqueda">
+                <a (click)="borrarFormulario()">{{ 'CONSULTAR_TRABAJADOR.limpiarBusqueda' | translate  }}</a>
+            </div>
+            <div class="column is-1">
+                <button type="button" [ngClass]="(btnBuscarOn || (bNombre && bDocumento && bSiniestro)) ? 'btnDisable' : 'btnBusqueda'" (click)="buscar()">{{ 'CONSULTAR_TRABAJADOR.buscar' | translate  }}</button>
+            </div>
+        </div>
+    </form>
+</div>

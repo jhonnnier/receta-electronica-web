@@ -1,0 +1,73 @@
+@import "../../../styles/base/all";
+
+body {
+  background-color: #F5F6F7 !important;
+}
+
+.container i {
+  margin-left: -30px;
+  cursor: pointer;
+}
+
+.alert {
+
+  &_top {
+    margin-top: 24px;
+  }
+}
+
+.login {
+  width: auto;
+
+  &_minh {
+  }
+
+  &_content {
+    border-style: solid;
+    border-color: $colorcxBlue30;
+    border-width: 0.5px;
+    padding: 25px;
+    margin-bottom: 60px;
+    background: white;
+    height: auto;
+  }
+
+  &_btn {
+    color: white;
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+    width: 100%
+  }
+}
+
+.password {
+  position: relative;
+
+  & > .showOrHide {
+    position: absolute;
+    right: 5px;
+    top: 34px;
+    cursor: pointer;
+    padding: 2px 10px;
+  }
+}
+
+.btn {
+  color: white;
+
+  &_primary {
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+  }
+
+  &_secondary {
+    background-color: $colorFontFooter;
+    border-color: $colorFontFooter;
+  }
+
+  &_success {
+  }
+
+  &_warning {
+  }
+}

@@ -1,0 +1,75 @@
+@import '_all';
+
+table {
+    width: 100%;
+}
+  
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+tr.mat-header-row {
+    background: $colorHeaderTable;
+}
+
+
+
+.mat-cell, .labelTable {
+    text-align: center;
+}
+
+::ng-deep .mat-sort-header-container {
+    display:flex;
+    justify-content: center;
+}
+
+.detalleContainer {
+    height: auto;
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 75px;
+
+    .detalleContainer__noBusqueda {
+        width: 100%;
+        margin-top: 35px;
+        
+        .detalleContainer__noBusqueda--imgNoBusqueda {
+            width: 35%;
+            margin-top: 50px;
+            background: $mainBg;
+            margin: 0 auto;
+        }
+
+        .detalleContainer__noBusqueda--textoNoBusqueda {
+            color: $colorFontConsultaEnc;
+            font-size: $fontSizeTextoDetalle;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .detalleContainer__noBusqueda--textoDosNoBusqueda {
+            color: $colorFontConsultaEnc;
+            font-size: $fontSizeTextoDosDetalle;
+            margin-top: 20px;
+            text-align: center;
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+    }
+}
+
+.detalleContainer__verDetalle {
+    @include d-flex-row();
+    cursor: pointer;
+    
+    .detalleContainer__verDetalle--imgEye {
+        height: 24px;
+        width: 24px;
+        margin-right: 10px;
+    }
+    
+    .detalleContainer__verDetalle--textoDetalle {
+        font-size: $fontSizeVerDetalle;
+        color: $colorBtnVerDetalle;
+    }
+}

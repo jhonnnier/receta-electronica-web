@@ -1,0 +1,13 @@
+<app-top></app-top>
+<!--<app-sidebar></app-sidebar>-->
+<div class="main-content-sinMenu">
+    <main>
+        <div class="main-content-sinMenu__content">
+            <app-consulta-encabezado-receta (sinResultado)="sinResultado = $event"
+                (limpiarResultado)="limpiarResultado = $event"
+                (listarRecetas)="getLstRecetas($event)"></app-consulta-encabezado-receta>
+            <app-consulta-detalle-receta #consultaDetalle></app-consulta-detalle-receta>
+        </div>
+    </main>
+</div>
+<app-footer></app-footer>

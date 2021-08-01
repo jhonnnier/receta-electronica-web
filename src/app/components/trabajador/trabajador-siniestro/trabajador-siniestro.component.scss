@@ -1,0 +1,227 @@
+@import '_all';
+@import 'mixins';
+
+input[type="radio"] {
+    height: 24px;
+    width: 24px;
+    border: 1px solid $colorBtnBusqueda;
+}
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+.clsFlexCenter {
+    @include d-flex-center();
+}
+
+.clsFlexWrap {
+    @include d-flexWrap();
+}
+
+.clsFlex-Wrap {
+    @include d-flex-wrap();
+}
+
+.clsFlex-center {
+    @include d-flexh-center();
+}
+
+.clsflexRight {
+    @include d-flexRight();
+    height: 70px;
+}
+
+.clsflexLeft {
+    flex: auto;
+    justify-content: flex-start;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+.clsDataPicker {
+    background: $colorBtnDataPicker; 
+    margin-top: 10px; 
+    margin-left: -2px; 
+    color: $colorBgwhite;
+}
+
+.btnCrearReceta {
+    background: $colorBtnCrearReceta;
+    height: 40px;
+    border-radius: 4px;
+    width: 10%;
+    color: white;
+    border: none;
+    margin-top: 15px;
+    margin-right: 15px;
+    outline: none;
+    cursor: pointer;   
+}
+
+.btnCrearReceta:hover {
+    background: $colorBtnHoverCrearReceta;
+    cursor: pointer;
+} 
+
+.staticContainer {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 72px;
+    background-color: $mainBg;
+    margin-top: -2rem;
+
+    .staticContainer__dvCuadrarSticky {
+        height: 170px;
+        padding-top: 32px;
+    }
+
+    .staticContainer__breadcrumbsCls {
+        @include d-flex-row();
+        @include d-flex-v-center();
+    }
+
+    .staticContainer__breadcrumbsCls--imgChevronRight {
+        height: 18px;
+        width: 18px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .staticContainer__title {
+        @include d-flex-row();
+        @include d-flex-v-center();
+
+        .staticContainer__title--imgArrowBack {
+            height: 24px;
+            width: 24px;   
+            margin-top: 25px;         
+        }
+
+        .staticContainer__title--title {
+            font-size: $fontSizeConsultaEnc;
+            font-weight: bold;
+            color: $colorFontConsultaEnc;
+            margin-left: 15px;
+            margin-top: 25px;
+        }
+    }
+    
+    .staticContainer__dvTpNumeroDocumento {
+        margin-top: 10px;
+        @include d-flex-row();
+
+        .staticContainer__dvTpNumeroDocumento--textoTpNumeroDocumento {
+            font-weight: bold;
+            padding-right: 10px;
+            color: $colorFontPlainText;
+        }
+    }
+}
+
+.trabajadorContainer {
+    width: 100%;
+    margin-bottom: 50px;
+
+    .trabajadorContainer__elements {
+        margin-top: 20px;
+
+        .clsObligatorio {
+            color: $colorObligatorio;
+            padding-left: 5px;
+        }
+        
+        .lbl {
+            font-size: $fontSizeLblConsultaEnc;
+            font-weight: bold;
+            color: $colorFontConsultaEnc;
+        }
+
+        .lblRadio {
+            padding-left: 5px; 
+            padding-right: 10px;
+        }
+        
+        .lblSexoCenterElement {
+            margin-top: 18px;
+            @include d-flex-row();
+        }
+        
+        .txt {
+            margin-top: 10px;
+            height: 40px;
+            border-radius: 4px;
+            border: 1px solid $colorTextBoxConsultaEnc;
+            width: 100%;
+            outline: none;
+            padding-left: 10px;
+        }
+
+        .trabajadorContainer__elements--fielSet {
+            border: none; 
+            display: flex; 
+            align-items: center;
+        }
+
+        .trabajadorContainer__elements--lblContacto {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .trabajadorContainer__elements--lblSiniestro {
+            @extend .trabajadorContainer__elements--lblContacto;
+            color: $colorFontPlainText;
+        }
+
+        .trabajadorContainer__elements--tableSiniestros {
+            border: 1px solid $colorBordeTablaTrabajadorSiniestro; 
+            min-height: 200px; 
+            max-height: 230px; 
+            width: 100%; 
+            background: $colorBgwhite; 
+            border-radius: 4px;
+
+            .trabajadorContainer__elements__tableSiniestros--RecetasAsociadas {
+                font-weight: bolder; 
+                font-size: $fontSizeVerDetalle;
+                color: $colorFontPlainText;
+            }
+        }
+
+        .trabajadorContainer__elements--tableCrearSiniestro {
+            border-bottom: 1px solid $colorBordeTablaTrabajadorSiniestro;
+            min-height: 135px;
+            max-height: 220px;
+            width: 100%; 
+            background: $colorBgwhite;
+        }
+
+        .trabajadorContainer__elements--dvNomSiniestro {
+            font-size: 25px; 
+            font-weight: bolder; 
+            margin: 20px 0 0 15px;
+            color: $colorFontPlainText;
+        }
+
+        .trabajadorContainer__elements--dvSiniestroFecha {
+            font-size: 16px; 
+            margin: 20px 0 0 10px;
+            @include d-flex-row();
+        }
+
+        .trabajadorContainer__elements__dvSiniestroFecha--SiniestroFecha {
+            font-weight: bolder; 
+            padding-right: 10px;
+            color: $colorFontPlainText;
+        }
+
+        .trabajadorContainer__elements--siniestros {
+            @include d-flex-row();
+            padding-bottom: 10px;
+        }
+    }
+}
+
+.paddingRight {
+    padding-right: 10px !important;
+}

@@ -1,0 +1,56 @@
+@import '_all';
+@import 'mixins';
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+.verDetalle__content {
+    width: 100%; 
+    padding: 0px 5% 0px 4%;
+
+    .lbl {
+        font-size: $fontSizeLblConsultaEnc;
+        font-weight: bold;
+        color: $colorFontConsultaEnc;
+        padding-right: 10px;
+    }
+
+    .verDetalle__content--borderReceta {
+        padding: 15px 0px 2% 5px;
+        border: 1px solid $colorContentDx;
+        border-left: 8px solid $colorDvContenedorReceta;
+        max-height: 170px;
+        min-height: 100px;
+        border-radius: 4px;
+    }
+
+    .verDetalle__content--apeNombres {
+        font-weight: normal;
+    }
+
+    .verDetalle__content--itemsCardInsideSpace {
+        padding-top: 20px;
+    }
+
+    .verDetalle__content--itemsCard {
+        display: inline-flex;
+    }
+
+    .verDetalle__content--tituloSiniestro {
+        font-size: 20px; 
+        font-weight: bolder;
+        padding: 40px 0px 20px 0px;
+    }
+
+    .verDetalle__content--borderSiniestro {
+        @extend .verDetalle__content--borderReceta;
+        max-height: 160px;
+        min-height: 120px;
+    }
+
+    .verDetalle__content--descSiniestro {
+        width: 85%;
+        overflow-wrap: break-word;
+    }
+}

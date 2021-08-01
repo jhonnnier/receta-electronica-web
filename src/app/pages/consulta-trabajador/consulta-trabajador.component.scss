@@ -1,0 +1,17 @@
+@import 'mixins';
+
+.breadcrumbsCls {
+    @include d-flex-row();
+    @include d-flex-v-center();
+}
+
+.breadcrumbsCls--imgChevronRight {
+    height: 18px;
+    width: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.centrarSpinner {
+    margin: 0 auto;
+}

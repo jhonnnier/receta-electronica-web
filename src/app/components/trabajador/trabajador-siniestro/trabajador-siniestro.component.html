@@ -1,0 +1,135 @@
+<div class="staticContainer">
+    <div class="staticContainer__dvCuadrarSticky">
+        <div class="staticContainer__breadcrumbsCls">
+            <span routerLink="/pages/receta/buscarReceta" class="txtBreadcrumbs">{{ 'BREADCRUMBS.recetas' | translate }}</span>
+            <img class="staticContainer__breadcrumbsCls--imgChevronRight" src="./../../../assets/icons/Double_chevron_right_24px.svg" alt="imgSeparadorBreadcrumbs" />
+            <span routerLink="/pages/consultaTrabajador" class="txtBreadcrumbs">{{ 'BREADCRUMBS.trabajadores' | translate }}</span>
+            <img class="staticContainer__breadcrumbsCls--imgChevronRight" src="./../../../assets/icons/Double_chevron_right_24px.svg" alt="imgSeparadorBreadcrumbs" />
+            <span class="txtBreadcrumbsActive">{{ afiliadoDTO?.nombreCompleto }}</span>
+        </div>
+        <div class="staticContainer__title">
+            <img src="./../../../../assets/icons/Arrow_back_24px.svg" alt="imgArrowBack" class="staticContainer__title--imgArrowBack" routerLink="/pages/consultaTrabajador" />
+            <span class="staticContainer__title--title">{{ afiliadoDTO?.nombreCompleto }}</span>
+        </div>
+        <div class="staticContainer__dvTpNumeroDocumento">
+            <p class="staticContainer__dvTpNumeroDocumento--textoTpNumeroDocumento">
+                {{ 'CONSULTAR_TRABAJADOR.tipoDocNumero' | translate }}:
+            </p>{{ afiliadoDTO?.tipoDocumento }}: {{ afiliadoDTO?.documento }}
+        </div>
+    </div>
+</div>
+<div class="trabajadorContainer">
+    <form [formGroup]="afiliadoForm" (ngSubmit)="validar()" autocomplete="off">
+        <div class="column is-12 trabajadorContainer__elements">
+            <div class="clsFlexRow column is-12">
+                <div class="column is-12 clsFlexRow">
+                    <div class="column is-3">
+                        <div class="column is-12">
+                            <label class="lbl" for="txtName">{{ 'TRABAJADOR.sexo' | translate  }}</label><span class="clsObligatorio">*</span>
+                            <div class="lblSexoCenterElement">
+                                <fieldset id="grupoSexo" class="trabajadorContainer__elements--fielSet">
+                                    <input
+                                        type="radio"
+                                        id="rdFemenino"
+                                        formControlName="grupoSexo"
+                                        value="F"
+                                        checked="{{ afiliadoDTO?.sexo === 'F' ? true : false }}"
+                                        [marcarError]="hasErrorControl('grupoSexo','required')"
+                                        />
+                                    <label class="lblRadio">{{ 'TRABAJADOR.femenino' | translate }} </label>
+                                    <input
+                                        type="radio"
+                                        id="rdMasculino"
+                                        formControlName="grupoSexo"
+                                        value="M"
+                                        checked="{{ afiliadoDTO?.sexo === 'M' ? true : false }}"
+                                        [marcarError]="hasErrorControl('grupoSexo','required')"
+                                        />
+                                    <label class="lblRadio"> {{ 'TRABAJADOR.masculino' | translate }}</label>
+                                </fieldset>
+                            </div>
+                            <div *ngIf="sexoInvalido">
+                                <app-error-field [mensajeCampo]='"campoRequerido"'></app-error-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-3 paddingRight">
+                        <div class="column is-12">
+                            <div>
+                                <label class="lbl" for="txtName">{{ 'TRABAJADOR.fechaNacimiento' | translate  }}</label><span class="clsObligatorio">*</span>
+                                <div class="clsFlexCenter">
+                                    <input matInput class="txt" color="accent" formControlName="fechaNacimiento"
+                                        [matDatepicker]="picker" [marcarError]="hasErrorControl('fechaNacimiento','required')">
+                                    <mat-datepicker-toggle class="clsDataPicker" matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </div>
+                            </div>
+                            <div *ngIf="fechaNacimientoInvalido">
+                                <app-error-field [mensajeCampo]='"campoRequerido"'></app-error-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-4 paddingRight">
+                        <div>
+                            <label class="lbl" for="txtCorreo">{{ 'TRABAJADOR.correoElectronico' | translate  }}</label><span class="clsObligatorio">*</span>
+                            <input class="txt"
+                                type="text"
+                                id="txtCorreo"
+                                formControlName="correo"
+                                [marcarError]="hasErrorControl('correo','required') || hasErrorControl('correo','pattern')" />
+                        </div>
+                        <div *ngIf="correoInvalido">
+                            <app-error-field *ngIf="afiliadoForm.get('correo').hasError('required')" [mensajeCampo]='"campoRequerido"'></app-error-field>
+                            <app-error-field *ngIf="afiliadoForm.get('correo').errors?.pattern" [mensajeCampo]='"correoInvalido"'></app-error-field>
+                        </div>
+                    </div>
+                    <div class="column is-2">
+                        <div>
+                            <label class="lbl" for="txtTelefono">{{ 'TRABAJADOR.telefono' | translate  }}</label>
+                            <input class="txt"
+                                type="text"
+                                id="txtTelefono"
+                                (keypress)="numberOnly($event)"
+                                formControlName="telefono"
+                                [marcarError]="hasErrorControl('telefono','pattern')" />
+                        </div>
+                        <div *ngIf="afiliadoForm.get('telefono').errors?.pattern">
+                            <app-error-field [mensajeCampo]='"soloNumeros"'></app-error-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+            <div class="column is-12 clsFlexRow">
+                <p class="trabajadorContainer__elements--lblSiniestro">{{ 'TRABAJADOR.siniestrosAsociados' | translate }}: {{ afiliadoDTO?.siniestros.length }}</p>
+            </div>
+            <br />
+            <div *ngIf="afiliadoDTO?.siniestros.length > 0">
+                <div class="trabajadorContainer__elements--siniestros" *ngFor="let siniestro of afiliadoDTO?.siniestros">
+                    <div class="trabajadorContainer__elements--tableSiniestros">
+                        <div class="trabajadorContainer__elements--tableCrearSiniestro">
+                            <div class="column is-12 clsFlexRow">
+                                <label class="trabajadorContainer__elements--dvNomSiniestro">{{ 'TRABAJADOR.idSiniestro' | translate }}: {{ siniestro.numeroSiniestro }}</label>
+                            </div>
+                            <div class="column is-12 trabajadorContainer__elements--dvSiniestroFecha">
+                                <div class="column is-5 paddingRight">
+                                    <label class="trabajadorContainer__elements__dvSiniestroFecha--SiniestroFecha">
+                                        {{ 'TRABAJADOR.fechaSiniestro' | translate }}:
+                                    </label><span>{{ siniestro.fechaSiniestro | date:'dd/MM/yyyy' }}</span>
+                                </div>
+                                <div class="column is-12">
+                                    <label class="trabajadorContainer__elements__dvSiniestroFecha--SiniestroFecha">
+                                        {{ 'TRABAJADOR.descSiniestro' | translate }}:
+                                    </label><span>{{ siniestro.descripcion }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clsflexRight">
+                            <button (click)="setTrabajadorSiniestroReceta(siniestro)" class="btnCrearReceta">{{ 'TRABAJADOR.crearReceta' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

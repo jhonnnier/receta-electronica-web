@@ -1,0 +1,51 @@
+@import '_all';
+@import 'mixins';
+
+.titulo {
+  text-align: left;
+  font: normal normal bold 24px/34px Open Sans;
+  letter-spacing: 0px;
+  color: #1E3645;
+  opacity: 1;
+}
+
+.icono {
+  display: flex;
+  flex-direction: row-reverse;
+  cursor: pointer;
+}
+
+.botones {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  &__botonDispensar {
+    background-color:  $colorB700;
+    border: 1px solid $colorB700;
+    color: $colorW700;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 40px;
+    align-self: center;
+  }
+
+  &__botonDispensar:hover {
+    background-color: $colorB800-hover;
+  }
+
+  &__botonSalir {
+    cursor: pointer;
+    color:  $colorB700;
+    margin-right: 20px;
+    align-self: center;
+  }
+
+  &__botonSalir:hover  {
+    color:  $colorB800-hover;
+  }
+}

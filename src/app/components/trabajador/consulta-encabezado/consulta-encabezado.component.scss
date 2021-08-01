@@ -1,0 +1,121 @@
+@import '_all';
+
+.btnBusqueda {
+    background: $colorBtnBusqueda;
+    height: 40px;
+    border-radius: 4px;
+    width: 100%;
+    color: white;
+    border: none;
+    margin-top: 30px;
+    outline: none;
+    font-size: $fontSizeBtn;     
+}
+
+.btnBusqueda:hover {
+    background: $colorBtnHoverBusqueda;
+    cursor: pointer;
+    font-size: $fontSizeBtn;
+    color: white;  
+} 
+
+.linkLimpiarBusqueda {
+    text-align: center;
+    margin-top: 40px;
+    text-decoration: none;
+    outline: none;
+    color: $colorBtnBusqueda;
+    cursor: pointer;
+    font-size: $fontSizeBtn;
+}
+
+.linkLimpiarBusqueda:hover {
+    color: $colorBtnHoverBusqueda;
+    font-size: $fontSizeBtn;
+}
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+.consultaContainer {
+    height: 150px;
+    width: 100%;
+
+    .consultaContainer__title {
+        @include d-flex-row();
+        @include d-flex-v-center();
+
+        .consultaContainer__title--imgArrowBack {
+            height: 24px;
+            width: 24px;            
+        }
+
+        .consultaContainer__title--title {
+            font-size: $fontSizeConsultaEnc;
+            font-weight: 900;
+            color: $colorFontConsultaEnc;
+            margin-left: 15px;
+        }
+    }
+
+    .consultaContainer__elements {
+        margin-top: 20px;
+
+        .lbl {
+            font-size: $fontSizeLblConsultaEnc;
+            font-weight: bold;
+            color: $colorFontConsultaEnc;
+        }
+
+        #txtNumDoc{
+            width: 110%;
+        }
+
+        .txt {
+            margin-top: 10px;
+            height: 40px;
+            border-radius: 4px;
+            border: 1px solid $colorTextBoxConsultaEnc;
+            width: 100%;
+            outline: none;
+            padding-left: 10px;
+        } 
+        
+        .select {
+            margin-top: 10px;
+            height: 40px;
+            border-radius: 4px;
+            border: 1px solid $colorTextBoxConsultaEnc;
+            width: 100%;
+            outline: none;
+            background: $colorBgwhite;
+        } 
+        
+        .lbl, .txt {
+            display:block;
+        }
+
+        .consultaContainer__elements--dvTipoNumdoc {
+            display: inline-block;
+        }
+
+        .consultaContainer__elements--txt {
+            width: 290px;
+        }
+
+        .consultaContainer__elements--txtNormal {
+            width: 186px;
+        }
+
+        a:link {
+            color: $colorBtnBusqueda;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: $colorBtnHoverBusqueda;
+            text-decoration: none;
+        }
+    }
+}

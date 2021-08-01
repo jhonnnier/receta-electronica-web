@@ -1,0 +1,32 @@
+@import "../../../styles/base/all";
+
+// OR directly on root amplify-authenticator component
+
+amplify-authenticator {
+  --amplify-primary-color: #1890FF;
+  --amplify-primary-tint: #1890FF;
+  --amplify-primary-shade: #1890FF;
+  justifyContent: center;
+  alignItems: center;
+  /*  border-style: solid;
+    border-width: 0.5px;
+    border-color: $colorcxBlue30;*/
+
+}
+
+amplify-toast {
+  --background-color: orange !important;
+}
+
+/*
+.toast {
+  background-color: orange !important;
+}
+
+amplify-toast {
+
+  &toast{
+    background-color: #9D0832;
+  }
+
+}*/

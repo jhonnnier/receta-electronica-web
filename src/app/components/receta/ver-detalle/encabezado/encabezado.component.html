@@ -1,0 +1,43 @@
+<div class="staticContainer">
+    <div class="staticContainer__dvCuadrarSticky">
+        <div class="staticContainer__breadcrumbsCls">
+            <span routerLink="/pages/receta/buscarReceta" class="txtBreadcrumbs">{{ 'BREADCRUMBS.recetas' | translate }}</span>
+            <img class="staticContainer__breadcrumbsCls--imgChevronRight" src="./../../../assets/icons/Double_chevron_right_24px.svg" alt="imgSeparadorBreadcrumbs" />
+            <span class="txtBreadcrumbsActive">{{ 'DETALLE_RECETA.recetaNum' | translate }} {{ setRecetaTrabajadorDTO?.numeroReceta }}</span>
+        </div>
+        <div *ngIf="showMessage" [@fade]="!timeOut" class="clsAlerta">
+            <mat-icon class="clsAlerta__iconAlerta">check_circle_outline</mat-icon>
+            <p class="clsAlerta__textoAlerta">{{ 'DETALLE_RECETA.recetaReenviada' | translate }}<span class="clsAlerta--correoActualizado">{{ correoActualizado }}</span></p>
+            <mat-icon (click)="cerrarAlerta()" class="clsAlerta__btnClose" aria-hidden="false" aria-label="iconAdd">clear</mat-icon>
+        </div>
+        <div *ngIf="showMessageError" [@fade]="!timeOut" class="clsAlertaError">
+            <mat-icon class="clsAlertaError__iconAlerta">highlight_off</mat-icon>
+            <p class="clsAlertaError__textoAlerta">{{ msgCorreoError }}</p>
+            <mat-icon (click)="cerrarAlerta()" class="clsAlertaError__btnClose" aria-hidden="false" aria-label="iconAdd">clear</mat-icon>
+        </div>
+        <div class="staticContainer__title">
+            <img src="./../../../../assets/icons/Arrow_back_24px.svg" alt="imgArrowBack" class="staticContainer__title--imgArrowBack" (click)="backClicked()" />
+            <span class="staticContainer__title--title">{{ 'DETALLE_RECETA.recetaNum' | translate }} {{ setRecetaTrabajadorDTO?.numeroReceta }}</span>
+            <div class="staticContainer__title--estado clsEstadoRevision" *ngIf="setRecetaTrabajadorDTO?.estadoReceta?.codigo === 'EN_REVISION'">{{ setRecetaTrabajadorDTO?.estadoReceta?.descripcion }}</div>
+            <div class="staticContainer__title--estado clsEstadoGenerada" *ngIf="setRecetaTrabajadorDTO?.estadoReceta?.codigo === 'GENERADA'">{{ setRecetaTrabajadorDTO?.estadoReceta?.descripcion }}</div>
+            <div class="staticContainer__title--estado clsEstadoAprobada" *ngIf="setRecetaTrabajadorDTO?.estadoReceta?.codigo === 'APROBADA'">{{ setRecetaTrabajadorDTO?.estadoReceta?.descripcion }}</div>
+            <div class="staticContainer__title--estado clsEstadoEnvioPendiente" *ngIf="setRecetaTrabajadorDTO?.estadoReceta?.codigo === 'ENVIO_PENDIENTE'">{{ setRecetaTrabajadorDTO?.estadoReceta?.descripcion }}</div>
+            <div class="staticContainer__title--estado clsEstadoEnviada" *ngIf="setRecetaTrabajadorDTO?.estadoReceta?.codigo === 'ENVIADA'">{{ setRecetaTrabajadorDTO?.estadoReceta?.descripcion }}</div>
+            <div class="staticContainer__title--estado clsEstadoRechazada" *ngIf="setRecetaTrabajadorDTO?.estadoReceta?.codigo === 'RECHAZADA'">{{ setRecetaTrabajadorDTO?.estadoReceta?.descripcion }}</div>
+            <div class="staticContainer__title--estado clsEstadoDispensada" *ngIf="setRecetaTrabajadorDTO?.estadoReceta?.codigo === 'DISPENSADA'">{{ setRecetaTrabajadorDTO?.estadoReceta?.descripcion }}</div>
+            <div class="staticContainer__title--estado clsEstadoVencida" *ngIf="setRecetaTrabajadorDTO?.estadoReceta?.codigo === 'VENCIDA'">{{ setRecetaTrabajadorDTO?.estadoReceta?.descripcion }}</div>
+        </div>
+        <div class="staticContainer__headerRecetaSiniestro">
+            <div class="staticContainer__headerRecetaSiniestro--divContent">
+                <p class="staticContainer__headerRecetaSiniestro--label">{{ 'DETALLE_RECETA.fechaReceta' | translate }}:</p> 
+                <span class="staticContainer__headerRecetaSiniestro--texto">{{ setRecetaTrabajadorDTO?.fechaCreacion | date:'dd/MM/yyyy' }}</span>
+            </div>
+            &nbsp;
+            &nbsp;
+            <div class="staticContainer__headerRecetaSiniestro--divContent">
+                <p class="staticContainer__headerRecetaSiniestro--label">{{ 'CONSULTAR_TRABAJADOR.financiador' | translate }}:</p>
+                <span class="staticContainer__headerRecetaSiniestro--texto">{{ setRecetaTrabajadorDTO?.siniestro?.afiliado?.financiador.razonSocial}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<app-top></app-top>
+<div class="main-content-sinMenu">
+    <main>
+        <div class="main-content-sinMenu__content" *ngIf="recetaTrabajadorDTO && recetaTrabajadorDTO !== null">
+            <div>
+                <div class="columns">
+                    <div class="column is-8">
+                        <app-ver-detalle-encabezado [showMessage]="correoActualizadoOK"
+                            [timeOut]="timeOutAlert"
+                            [correoActualizado]="correoActualizado"
+                            [setRecetaTrabajadorDTO]="recetaTrabajadorDTO"
+                            [showMessage]="correoActualizadoOK"
+                            [showMessageError]="errorActualizando"
+                            [msgCorreoError]="errorBack">
+                        </app-ver-detalle-encabezado>   
+
+                        <form [formGroup]="verDetalleForm" autocomplete="off">
+                            <div class="receta_verDetalle__content">
+                                <div class="receta_verDetalle__content--borderReceta"></div>
+                                <p class="receta_verDetalle__content--tituloReceta">{{ 'DETALLE_RECETA.trabajador' | translate }}</p>
+                                <app-ver-detalle-trabajador-siniestro [setRecetaTrabajadorDTO]="recetaTrabajadorDTO"></app-ver-detalle-trabajador-siniestro>
+                                <app-ver-detalle-diagnosticos-medicamentos [setRecetaTrabajadorDTO]="recetaTrabajadorDTO"></app-ver-detalle-diagnosticos-medicamentos>
+                                <div *ngIf="esEnviada" class="receta__correoEnvioReceta">
+                                    <div class="columns">
+                                        <div class="column is-12">
+                                            <p class="receta__correoEnvioReceta--titulo">{{ 'DETALLE_RECETA.reenviarReceta' | translate }}</p>
+                                            <div class="column is-12">
+                                                <label class="receta__correoEnvioReceta--lblCorreo">{{ 'DETALLE_RECETA.correoElectronico' | translate }}</label><span class="clsObligatorio">*</span>
+                                            </div>
+                                            <div class="receta__correoEnvioReceta--blockInputBtn">
+                                                <div class="column is-3 receta__correoEnvioReceta--inputLeft">
+                                                    <input class="txt"
+                                                    type="text"
+                                                    id="txtCorreo"
+                                                    formControlName="correo"
+                                                    [marcarError]="hasErrorControl('correo','required') || hasErrorControl('correo','pattern')" />
+                                                </div>
+                                                <button (click)="actualizarCorreo()" class="btnCrearReceta">{{ 'reenviar' | translate }}</button>
+                                            </div>
+                                            <div *ngIf="correoInvalido">
+                                                <app-error-field *ngIf="verDetalleForm.get('correo').hasError('required')" [mensajeCampo]='"campoRequerido"'></app-error-field>
+                                                <app-error-field *ngIf="verDetalleForm.get('correo').errors?.pattern" [mensajeCampo]='"DETALLE_RECETA.correoIncorrecto"'></app-error-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="receta_verDetalle__btnVolver">
+                                <span class="btnCancelar" routerLink="/pages/receta/buscarReceta">{{ 'volverBusqueda' | translate  }}</span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="column is-4 containerAlertas">
+                        <label class="labelAlertas">{{ 'VER_DETALLE_AUDITOR.alertas' | translate }} ({{recetaTrabajadorDTO.alertasReceta?.length}})</label>
+                        <app-ver-detalle-alertas-auditor [recetaTrabajadorDTO]="recetaTrabajadorDTO"></app-ver-detalle-alertas-auditor>
+                        <div class="containerDecision">
+                        <label class="labelDecision">{{ 'VER_DETALLE_AUDITOR.decisionAuditoria' | translate }}</label>
+                        <app-ver-detalle-decision-auditor [detalleReceta]="recetaTrabajadorDTO" [verDesicion]="false"></app-ver-detalle-decision-auditor>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </main>
+</div>
+<app-footer></app-footer>

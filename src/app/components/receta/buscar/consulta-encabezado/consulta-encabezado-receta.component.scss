@@ -1,0 +1,154 @@
+@import '_all';
+
+.btnBusqueda {
+    background: $colorBtnBuscarRecetaCreada;
+    height: 40px;
+    border-radius: 4px;
+    width: 100%;
+    color: white;
+    border: none;
+    margin-top: 30px;
+    outline: none;
+    cursor: pointer;
+    font-size: $fontSizeBtn;   
+}
+
+.btnBusqueda:hover {
+    background: $colorBtnHoverBusqueda;
+    cursor: pointer;
+    color: white;
+    font-size: $fontSizeBtn;  
+} 
+
+.btnCrearReceta {
+    opacity: 1;   
+    text-align: left;
+    font: normal normal normal 16px/22px Open Sans;
+    letter-spacing: 0px;
+    color: #02588C;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.btnCrearReceta:hover {
+    opacity: 1;  
+} 
+
+.linkLimpiarBusqueda {
+    text-align: center;
+    margin-top: 40px;
+    text-decoration: none;
+    outline: none;
+    color: $colorBtnBuscarRecetaCreada;
+    cursor: pointer;
+    font-size: $fontSizeBtn;  
+}
+
+.linkLimpiarBusqueda:hover {
+    color: $colorBtnHoverBusqueda;
+    font-size: $fontSizeBtn;  
+}
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+.consultaContainer {
+    height: 150px;
+    width: 100%;
+
+    .consultaContainer__title {
+        @include d-flex-row();
+        @include d-flex-v-center();
+        justify-content: space-between;
+
+        .consultaContainer__title--imgArrowBack {
+            height: 24px;
+            width: 24px;            
+        }
+
+        .consultaContainer__title--title {
+            font-size: $fontSizeConsultaEnc;
+            font-weight: 900;
+            color: $colorFontConsultaEnc;
+        }
+
+        .consultaContainer__btnCrearReceta {
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #0377BD;
+            border-radius: 4px;
+            opacity: 1;   
+            display: flex;
+            align-items: center;
+            padding-left: 8px;
+            cursor: pointer;
+        }
+
+        .consultaContainer__add {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .consultaContainer__elements {
+        margin-top: 20px;
+        margin-left: -10px;
+
+        .lbl {
+            font-size: $fontSizeLblConsultaEnc;
+            font-weight: bold;
+            color: $colorFontConsultaEnc;
+            margin-left: 2px;
+        }
+
+        #txtNumDoc{
+            width: 110%;
+        }
+
+        .txt {
+            margin-top: 10px;
+            height: 40px;
+            border-radius: 4px;
+            border: 1px solid $colorTextBoxConsultaEnc;
+            width: 100%;
+            outline: none;
+            padding-left: 10px;
+        } 
+        
+        .select {
+            margin-top: 10px;
+            height: 40px;
+            border-radius: 4px;
+            border: 1px solid $colorTextBoxConsultaEnc;
+            width: 100%;
+            outline: none;
+            background: $colorBgwhite;
+        } 
+        
+        .lbl, .txt {
+            display:block;
+        }
+
+        .consultaContainer__elements--dvTipoNumdoc {
+            display: inline-block;
+        }
+
+        .consultaContainer__elements--txt {
+            width: 290px;
+        }
+
+        .consultaContainer__elements--txtNormal {
+            width: 186px;
+        }
+
+        a:link {
+            color: $colorBtnBusqueda;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: $colorBtnHoverBusqueda;
+            text-decoration: none;
+        }
+    }
+}

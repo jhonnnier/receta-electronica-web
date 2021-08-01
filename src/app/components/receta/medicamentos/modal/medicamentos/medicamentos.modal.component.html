@@ -1,0 +1,148 @@
+<div class="columns modalMedicamentos__content">
+    <div class="column is-12">
+        <div class="modalMedicamentos__content--borderTopModal"></div>
+        <div class="column is-12">
+            <div class="modalMedicamentos__content--dvClose">
+                <mat-icon class="modalMedicamentos__content--btnClose" aria-hidden="false" aria-label="iconAdd" matDialogClose>clear</mat-icon>
+            </div>
+        </div>
+        <div class="column is-12">
+            <p class="modalMedicamentos__content--titleMedicamentos">{{ 'RECETA.agregarMedicamento' | translate }}</p>
+            <form [formGroup]="form" autocomplete="off" (ngSubmit)="guardar()" class="modalMedicamentos__content--formContent">
+                <div class="clsFlexRow column is-12">
+                    <div class="column is-9">
+                        <label for="txtMedicamento" class="modalMedicamentos__content--lblMedicamentos">
+                            {{ 'RECETA.medicamento' | translate }}
+                        </label><span class="clsObligatorio">*</span>
+                        <input type="text"
+                                class="txtAutocomplete"
+                                formControlName="autocompleteMedicamento"
+                                placeholder="{{ 'RECETA.minimoCaracteresMed' | translate }}"
+                                [matAutocomplete]="auto"
+                                id="txtMedicamento"
+                                (keyup)="quedoBlanco($event)"
+                                [marcarError]="((lstMedicamentosConsultar$ | async)?.length==0 && showErrorFirstTime && medicamentosSeleccionado === null) || validAutocompleteMedto || medtoExiste"
+                                #autocomplete>
+                        <mat-icon class="mat-icon-search" matPrefix>search</mat-icon>
+                        <mat-autocomplete (optionSelected)="opcionSeleccionada($event)" #auto="matAutocomplete" [displayWith]="displayFn">
+                            <mat-option *ngFor="let medicamento of lstMedicamentosConsultar$ | async" [value]="medicamento">
+                                {{ titulo(medicamento.monodroga) }} - {{ medicamento.nombre }} - {{ medicamento.presentacion }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <div class="dvErrorMed" *ngIf="((lstMedicamentosConsultar$ | async)?.length==0 && showErrorFirstTime && medicamentosSeleccionado === null) || validAutocompleteMedto || medtoExiste">
+                            <app-error-field *ngIf="(lstMedicamentosConsultar$ | async)?.length==0 && showErrorFirstTime && medicamentosSeleccionado === null" [mensajeCampo]='errorDx'></app-error-field>
+                            <app-error-field *ngIf="validAutocompleteMedto" [mensajeCampo]='"campoRequerido"'></app-error-field>
+                            <app-error-field *ngIf="medtoExiste" [mensajeCampo]='"RECETA.medtoExiste"'></app-error-field>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <label class="lbl" for="txtCantidad">
+                            {{ 'RECETA.cantidadPlaceHolder' | translate  }}
+                        </label><span class="clsObligatorio">*</span>
+                        <input class="txt" (keypress)="numberOnly($event)"
+                            type="texto" formControlName="cantidad"
+                            id="txtCantidad" maxlength="3"
+                            [marcarError]="validCantidad || !validCantidad && form.get('cantidad').errors?.min"
+                        />
+                        <div class="dvErrorCantidad" *ngIf="validCantidad || !validCantidad && form.get('cantidad').errors?.min">
+                            <app-error-field *ngIf="validCantidad" [mensajeCampo]='"campoRequerido"'></app-error-field>
+                            <app-error-field *ngIf="!validCantidad && form.get('cantidad').errors?.min" [mensajeCampo]='"cantEnCero"'></app-error-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="autocompleteContainer__elements--posologia column is-12">
+                    <div class="column is-6">
+                        <div class="column is-12">
+                            <div class="clsFlexRow">
+                                <label class="lbl" for="txtDosis">
+                                    {{ 'RECETA.dosis' | translate  }}
+                                </label><span class="clsObligatorio">*</span>
+                            </div>
+                            <div class="clsFlexRow">
+                                <div class="column is-5">
+                                    <input class="txt" (keypress)="numberOnly($event)" maxlength="2"
+                                        type="text" placeholder="{{ 'RECETA.cantidadPlaceHolder' | translate }}"
+                                        id="txtDosis" formControlName="cantDosis"
+                                        [marcarError]="hasErrorControl('cantDosis', 'required')"
+                                    />
+                                </div>
+                                <div class="column is-7">
+                                    <select class="select" id="cmbPresentacion"
+                                        (change)="valNoAplica($event)"
+                                        formControlName="presentacion"
+                                        [marcarError]="hasErrorControl('presentacion', 'required')">
+                                        <option value="">{{ 'Seleccione' | translate}}</option>
+                                        <option
+                                        *ngFor="let presentacion of lstPresentacion$ | async" value="{{presentacion.codigo}}">
+                                            {{ presentacion.descripcion }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dvErrorDosisPresentacion" *ngIf="validCantPresentacion || validPresentacion">
+                            <app-error-field [mensajeCampo]='"campoRequerido"'></app-error-field>
+                        </div>
+                    </div>
+                    <p class="autocompleteContainer__elements--cadaFrecuencia">{{ 'RECETA.recetaFrecuenciaCada' | translate }}</p>
+                    <div class="column is-6">
+                        <div class="column is-12">
+                            <div class="clsFlexRow">
+                                <label class="lbl" for="txtFrecuencia">
+                                    {{ 'RECETA.frecuencia' | translate  }}
+                                </label><span class="clsObligatorio">*</span>
+                            </div>
+                            <div class="clsFlexRow">
+                                <div class="column is-5">
+                                    <input class="txt" formControlName="cantFrecuencia" maxlength="2"
+                                        type="text" placeholder="{{ 'RECETA.cantidadPlaceHolder' | translate }}"
+                                        id="txtFrecuencia" (keypress)="numberOnly($event)"
+                                        [marcarError]="hasErrorControl('cantFrecuencia', 'required')"
+                                    />
+                                </div>
+                                <div class="column is-7">
+                                    <select class="select" id="cmbTiempo" formControlName="frecuencia"
+                                        [marcarError]="hasErrorControl('frecuencia', 'required')">
+                                        <option value="">{{ 'Seleccione' | translate}}</option>
+                                        <option
+                                        *ngFor="let frecuencia of lstFrecuencia$" value="{{frecuencia.codigo}}">
+                                            {{ frecuencia.descripcion }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dvErrorDosisPresentacion" *ngIf="validCantFrecuencia || validFrecuencia">
+                            <app-error-field [mensajeCampo]='"campoRequerido"'></app-error-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="autocompleteContainer__elements--indicaciones column is-12">
+                    <div class="column is-12">
+                        <label class="lbl" for="txaIndicaciones">
+                            {{ 'RECETA.indicaciones' | translate }}
+                        </label><span class="clsObligatorio">*</span>
+                    </div>
+                    <div class="column is-12">
+                        <textarea class="txa" id="txaIndicaciones" maxlength="300"
+                            formControlName="indicaciones" rows="6" cols="50"
+                            [marcarError]="hasErrorControl('indicaciones', 'required')"></textarea>
+                    </div>
+                    <div class="dvErrorObservacion" *ngIf="validIndicaciones">
+                        <app-error-field [mensajeCampo]='"campoRequerido"'></app-error-field>
+                    </div>
+                </div>
+                <div class="autocompleteContainer__elements--opciones column is-12">
+                    <div class="clsflexRight">
+                        <div *ngIf="!esEdicion" class="autocompleteContainer__elements--otroMedicamento">
+                            <input class="chb" (change)="agregarOtroMedto = $event.target.checked" type="checkbox" id="chbOtroMedicamento" />
+                            <label for="chbOtroMedicamento">{{ 'RECETA.agregarOtroMedicamento' | translate }}</label>
+                        </div>
+                        <a matDialogClose class="linkLimpiarBusqueda">{{ 'RECETA.btnCancelar' | translate }}</a>
+                        <button type="submit" class="btnCrearReceta">{{ 'RECETA.btnAgregar' | translate }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="columns autocompleteContainer">
+    <div class="column is-12 autocompleteContainer__elements">
+        <div class="column is-12">
+            <div class="column is-12">
+                <label class="lbl">{{ 'RECETA.agregarDx' | translate }} </label><span class="clsObligatorio">*</span>
+            </div>
+            <div class="column is-12">
+                <form class="example-form">
+                    <div>
+                        <input type="text"
+                                class="txtAutocomplete"
+                                [formControl]="control"
+                                placeholder="{{ 'RECETA.minimoCaracteresDx' | translate }}"
+                                [matAutocomplete]="auto"
+                                [marcarError]="((lstDiagnosticosConsultar$ | async)?.length==0 && showErrorFirstTime && control.value !== '') || showMsnDxObligatorio"
+                                #autocomplete>
+                        <mat-icon matPrefix>search</mat-icon>
+                        <mat-autocomplete (optionSelected)="opcionSeleccionada($event)" #auto="matAutocomplete">
+                        <mat-option *ngFor="let dxConsulta of lstDiagnosticosConsultar$ | async" [value]="dxConsulta">
+                            {{ dxConsulta.codigo }} - {{ dxConsulta.descripcion }}
+                        </mat-option>
+                        </mat-autocomplete>
+                    </div>
+                    <div *ngIf="((lstDiagnosticosConsultar$ | async)?.length==0 && showErrorFirstTime && control.value !== '') || showMsnDxObligatorio">
+                        <app-error-field *ngIf="(lstDiagnosticosConsultar$ | async)?.length==0 && showErrorFirstTime && control.value !== ''" [mensajeCampo]='errorDx'></app-error-field>
+                        <app-error-field *ngIf="showMsnDxObligatorio" [mensajeCampo]='"RECETA.faltadxOrMedto"'></app-error-field>
+                    </div>
+                    <p class="autocompleteContainer__elements--maxDx">{{ 'RECETA.maximoDx' | translate }}</p>
+                    <mat-list role="list" *ngFor="let dx of lstDiagnosticosSeleccionados; let i = index" >
+                        <mat-list-item role="listitem" class="autocompleteContainer__elements--LstChips">
+                            <span class="autocompleteContainer__elements--indexLst">{{ i+1 }}. </span>
+                            <mat-chip-list #chipList aria-label="dx seleccion">
+                                <mat-chip class="autocompleteContainer__elements--chips"
+                                    [selectable]="selectable"
+                                    [removable]="removable"
+                                    (removed)="remove(i)">
+                                    <p class="autocompleteContainer__elements--dxParrafoSeleccionado"><span class="autocompleteContainer__elements--dxSpanSeleccionado">{{ dx.codigo }} - </span>{{ dx.descripcion }}</p>
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                </mat-chip-list>
+                        </mat-list-item>
+                    </mat-list>
+                    <p class="autocompleteContainer__elements--obsDx">{{ 'RECETA.obsDX' | translate }}: <span class="lbl">{{ trabajadorSiniestroService.getCantAlertasDx() | async}}</span></p>
+                    <div *ngIf="(trabajadorSiniestroService.getAlertasDxMed() | async).alertas && (trabajadorSiniestroService.getAlertasDxMed() | async).alertas.length > 0">
+                        <div class="autocompleteContainer__elements--alertaDx" *ngFor="let alerta of (trabajadorSiniestroService.getAlertasDxMed() | async).alertas">
+                            <app-alert *ngIf="alerta.tipo === 'Diagnostico'" 
+                                [tipoAlerta]="'W'" 
+                                [mensaje]="getMensajeAlerta(alerta)" 
+                                [mostrarBotonCerrar]="false">
+                            </app-alert>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

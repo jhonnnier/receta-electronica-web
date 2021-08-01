@@ -1,0 +1,16 @@
+@import "./../../../styles/base/variables.scss";
+
+.main-content {
+    position: relative;
+    margin-left: 232px;
+    background: $mainBg;
+}
+
+main {
+    margin-top: 72px;
+    min-height: 90vh;
+}
+
+.main-content__content {
+    padding: 2rem;
+}

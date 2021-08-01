@@ -1,0 +1,89 @@
+<div class="p-container_full d_flex justify_content_center vertical-align_center">
+  <div>
+    <div class="p-col-12 p-shadow-1 login_content">
+      <div>
+        <h2 class="text_bold p-mt-2">{{ 'LOGIN.titulo' | translate }}</h2>
+      </div>
+      <div class="p-mt-2">
+        <label>{{ 'LOGIN.mensajeBienvida' | translate }}</label>
+      </div>
+      <div class="p-mt-4">
+        <form [formGroup]="loginForm">
+          <div class="card">
+            <div class="p-fluid">
+              <div class="p-field">
+                <small for="username"
+                       class="text_bold">
+                  {{ 'LOGIN.usuarioOrEmail' | translate }}
+                  <span class="text_color_danger">*</span>
+                </small>
+                <input id="username"
+                       name="username"
+                       pInputText
+                       class="p-mt-2 input_bc_none input_shadow_none"
+                       formControlName="username">
+                <ng-container *ngIf="errorShow">
+                  <div *ngIf="loginControl.username.errors?.required">
+                    <app-error-field [mensajeCampo]='i18.LOGIN.campoRequerido'
+                    ></app-error-field>
+                  </div>
+                  <div *ngIf="loginControl.username.errors?.email">
+                    <app-error-field [mensajeCampo]='i18.LOGIN.emailFormatoIncorrecto'
+                    ></app-error-field>
+                  </div>
+                </ng-container>
+              </div>
+              <div class="p-field password">
+                <small for="password"
+                       class="text_bold">
+                  {{ 'LOGIN.contrasenia' | translate }}
+                  <span class="text_color_danger">*</span>
+                </small>
+                <input id="password"
+                       type="password"
+                       name="password"
+                       class="p-mt-2 input_bc_none input_shadow_none"
+                       pInputText
+                       formControlName="password"
+                       autocomplete="off">
+                <span id="passwordShow"
+                       class="text_color_primary text_underline showOrHide text_color_primary"
+                       onclick="passwordShow();">
+                  {{ 'LOGIN.mostrar' | translate }}
+                </span>
+                <ng-container *ngIf="errorShow">
+                  <div *ngIf="loginControl.password.errors?.required">
+                    <app-error-field [mensajeCampo]='i18.LOGIN.campoRequerido'
+                    ></app-error-field>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="p-mt-1">
+              <span>{{ 'LOGIN.olvidoContrasenia' | translate }}
+                <span class="cursor_pointer text_underline text_color_primary"
+                      (click)="goTo('login/forgot-password-send-email')">
+                  {{ 'LOGIN.recuperarContrasenia' | translate }}
+                </span>
+              </span>
+            </div>
+            <div class="p-mt-3">
+              <button pButton
+                      pRipple
+                      type="button"
+                      class="btn-block btn_color_primary"
+                      [disabled]="!loginControl.password.value || !loginControl.username.value"
+                      label="{{ 'LOGIN.ingresar' | translate }}"
+                      (click)="onClickLogIn()"
+              ></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block-ui__wrapper">
+  <p>Please change to portrait mode to further access our application</p>
+</div>

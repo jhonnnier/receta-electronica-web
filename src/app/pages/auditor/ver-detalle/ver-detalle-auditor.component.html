@@ -1,0 +1,27 @@
+<app-top></app-top>
+<div class="main-content-sinMenu">
+    <main>
+        <div class="main-content-sinMenu__content" *ngIf="isViewReady">
+          <div>
+            <app-alert [mensaje]="mensajeErrorAlert" [tipoAlerta]="'E'"></app-alert>
+            <div class="columns">
+              <div class="column is-8">
+                <div>
+                  <app-ver-detalle-encabezado-auditor [setDetalleReceta]="recetaTrabajadorDTO"></app-ver-detalle-encabezado-auditor>
+                  <app-detalle-tabs [setRecetaTrabajadorDTO]="recetaTrabajadorDTO"></app-detalle-tabs>
+                </div>
+              </div>
+              <div class="column is-4 containerAlertas">
+                <label class="labelAlertas">{{ 'VER_DETALLE_AUDITOR.alertas' | translate }} ({{recetaTrabajadorDTO.alertasReceta?.length}})</label>
+                <app-ver-detalle-alertas-auditor [recetaTrabajadorDTO]="recetaTrabajadorDTO"></app-ver-detalle-alertas-auditor>
+                <div class="containerDecision">
+                  <label class="labelDecision">{{ 'VER_DETALLE_AUDITOR.decisionAuditoria' | translate }}</label>
+                  <app-ver-detalle-decision-auditor [detalleReceta]="recetaTrabajadorDTO" (verAlerta)="verAlerta($event)"></app-ver-detalle-decision-auditor>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+</div>
+<app-footer></app-footer>

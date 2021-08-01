@@ -1,0 +1,20 @@
+<div class="verDetalle__content">
+    <p class="verDetalle__content--tituloDiagnostico">{{ 'DETALLE_RECETA.tituloDx' | translate }}</p>
+    <div *ngIf="setRecetaTrabajadorDTO?.diagnosticos.length > 0">
+        <ul class="verDetalle__content--listaDx">
+            <li *ngFor="let dx of setRecetaTrabajadorDTO.diagnosticos; let i = index"><p><span class="verDetalle__content--NumerallistaDx">{{ i + 1 }}.</span>{{ dx.codigo }} - {{ dx.descripcion }}</p></li>
+        </ul>
+    </div>
+    <p class="verDetalle__content--tituloMedicamento">{{ 'DETALLE_RECETA.rp' | translate }}</p>
+    <div *ngIf="setRecetaTrabajadorDTO?.medicamentos.length > 0">
+        <ul>
+            <li *ngFor="let med of setRecetaTrabajadorDTO.medicamentos">
+                <p class="verDetalle__content__listaMed--titulo">{{ med.monodroga }} {{ med.presentacion }} {{ '(' + med.nombre + ')' }} - Cantidad: {{ med.cantidadEnvases }}</p>
+                <p class="verDetalle__content__listaMed--indicaciones">{{ obtenerPosologia(med.cantidadDosis, med.dosisMedicamento, med.cantidadFrecuencia, med.frecuenciaMedicamento.descripcion, med.indicaciones) }}</p>
+                <br />
+            </li>
+        </ul>
+    </div>
+    <p class="verDetalle__content--Medico">{{ 'DETALLE_RECETA.ttoDr' | translate }} {{ setRecetaTrabajadorDTO?.medico?.nombreCompleto }}</p>
+    <p>{{ 'DETALLE_RECETA.matriculaDr' | translate }} {{ setRecetaTrabajadorDTO?.medico?.nroMatricula }}</p>
+</div>

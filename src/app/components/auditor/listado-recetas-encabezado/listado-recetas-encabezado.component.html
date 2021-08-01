@@ -1,0 +1,58 @@
+<div class="consultaContainer">
+    <div class="consultaContainer__title">
+        <span class="consultaContainer__title--title">{{ 'LISTADO_RECETA_AUDITOR.titulo' | translate  }}</span>
+    </div>
+    <form [formGroup]="searchAuditorForm" autocomplete="off">
+        <div class="columns consultaContainer__elements">
+            <div class="column is-2">
+                <div>
+                    <label class="lbl" for="txtNumReceta">{{ 'LISTADO_RECETA_AUDITOR.numReceta' | translate  }}</label>
+                    <input class="txt"
+                        type="text"
+                        id="txtNumReceta"
+                        formControlName="numReceta"
+                        (keypress)="numberOnly($event)"
+                        (keyup)="btnBuscarOn = $event.target.value !== '' ? false : true" />
+                </div>
+            </div>
+            <div class="column is-2">
+                <label class="lbl" for="txtEstReceta">{{ 'LISTADO_RECETA_AUDITOR.estado' | translate  }}</label>
+                <select class="select" id="txtEstReceta" (change)="btnBuscarOn = false" formControlName="estado">
+                    <option value="">{{ 'Todos' | translate}}</option>
+                    <option id="{{estRec.id}}"
+                    *ngFor="let estRec of lstEstadosReceta$ | async" value="{{estRec.codigo}}">
+                        {{ estRec.descripcion }}
+                    </option>
+                </select>
+            </div>
+            <div class="column is-3">
+                <div>
+                    <label class="lbl" for="txtFechaPrescripcion">{{ 'LISTADO_RECETA_AUDITOR.fechaPrescripcion' | translate  }}</label>
+                    <div class="dateRange">
+                        <mat-date-range-input [rangePicker]="picker">
+                            <input #dateRangeStart matStartDate id="txtDateRangeStart" [formControl]="searchAuditorForm.controls['fechaPrescripcionInicio']" placeholder="Desde-Hasta">
+                            <input #dateRangeEnd matEndDate (dateChange)="verifyChangeDate(dateRangeStart, dateRangeEnd)" [formControl]="searchAuditorForm.controls['fechaPrescripcionFin']">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle class="clsDataPicker" matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-2">
+                <label class="lbl" for="txtSiniestro">{{ 'LISTADO_RECETA_AUDITOR.numSiniestro' | translate  }}</label>
+                <input class="txt"
+                    type="text"
+                    id="txtSiniestro"
+                    formControlName="numSiniestro"
+                    (keypress)="numberOnly($event)"
+                    (keyup)="btnBuscarOn = $event.target.value !== '' ? false : true" />
+            </div>
+            <div class="column is-3">
+                <div class="consultaContainer__elements--opciones">
+                    <button (click)="buscar()" class="consultaContainer__elements__opciones--btnBusqueda">{{ 'LISTADO_RECETA_AUDITOR.btnBuscar' | translate  }}</button>
+                    <a (click)="borrarFormulario()" class="consultaContainer__elements__opciones--linkLimpiarBusqueda">{{ 'LISTADO_RECETA_AUDITOR.linkLimpiar' | translate  }}</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

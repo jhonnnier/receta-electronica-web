@@ -1,0 +1,50 @@
+<cnx-colors-top></cnx-colors-top>
+<div *ngIf="renderSuccesPage;else verificarCodigoContent"
+     class="p-container_full d_flex justify_content_center p-p-2">
+  <app-detalle-dispensacion [idReceta]="idReceta"></app-detalle-dispensacion>
+</div>
+<ng-template #verificarCodigoContent>
+  <div class="p-grid dispensacion__content">
+    <div class="p-col-11 p-sm-10 p-md-9 p-lg-8 p-xl-6 dispensacion__content__card_max-width">
+      <div class="dispensacion__content__card p-mt-3">
+        <div class="p-text-center">
+          <img class="dispensacion__content__card__logo" src="../../../../assets/images/Grupo%20310.svg">
+        </div>
+        <div>
+          <p class="dispensacion__content__card__titulo">{{'DISPENSACION_RECETA.titulo' | translate }}</p>
+          <p class="dispensacion__content__card__subtitulo">{{'DISPENSACION_RECETA.subtitulo' | translate }}</p>
+        </div>
+        <div class="p-text-center">
+          <form [formGroup]="formulario">
+            <input  #codigo1 id="codigo1" (keydown.space)="$event.preventDefault()"
+                    class="dispensacion__content__card__input" type="text" maxlength="1"
+                    formControlName="codigo1" (ngModelChange)="onChange('codigo2', codigo1.value)">
+            <input  #codigo2 id="codigo2" (keydown.space)="$event.preventDefault()"
+                    class="dispensacion__content__card__input" type="text" maxlength="1"
+                    formControlName="codigo2" (ngModelChange)="onChange('codigo3', codigo2.value)">
+            <input  #codigo3 id="codigo3" (keydown.space)="$event.preventDefault()"
+                    class="dispensacion__content__card__input" type="text" maxlength="1"
+                    formControlName="codigo3" (ngModelChange)="onChange('codigo4', codigo3.value)">
+            <input  #codigo4 id="codigo4" (keydown.space)="$event.preventDefault()"
+                    class="dispensacion__content__card__input" type="text" maxlength="1"
+                    formControlName="codigo4" (ngModelChange)="onChange('codigo5', codigo4.value)">
+            <input  #codigo5 id="codigo5" (keydown.space)="$event.preventDefault()"
+                    class="dispensacion__content__card__input" type="text" maxlength="1"
+                    formControlName="codigo5" (ngModelChange)="onChange('codigo6', codigo5.value)">
+            <input  #codigo6 id="codigo6" (keydown.space)="$event.preventDefault()"
+                    class="dispensacion__content__card__input" type="text" maxlength="1"
+                    formControlName="codigo6">
+          </form>
+        </div>
+        <div *ngIf="this.codigoInvalido"  style="margin-top: 15px">
+          <app-error-field [mensajeCampo]='mensajeError'></app-error-field>
+        </div>
+        <div>
+          <button  [disabled]="!this.formulario.valid" class="dispensacion__content__boton" (click)="verificar()">
+            <a>{{ 'BOTONES_TITULOS.continuar' | translate  }}</a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

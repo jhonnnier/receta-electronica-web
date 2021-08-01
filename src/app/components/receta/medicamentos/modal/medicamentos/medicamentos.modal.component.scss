@@ -1,0 +1,254 @@
+@import '_all';
+@import 'mixins';
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+input[type="checkbox"] {
+    height: 18px;
+    width: 18px;
+    vertical-align: middle;
+    border: 1px solid $colorChbOtroMedicamento;
+    outline: none;
+    -webkit-appearance: none;
+    -webkit-transition: box-shadow 200ms;
+  
+}
+
+input[type="checkbox"] {
+    -webkit-border-radius:4px;
+    border-radius:4px;
+}
+
+input[type="checkbox"]:active:not(:disabled) {
+    border-color:$colorChbOtroMedicamento;
+}
+
+input[type="checkbox"]:checked {
+    border-color:$colorChbOtroMedicamento;
+    background-color: $colorChbOtroMedicamento;
+}
+
+input[type="checkbox"]:checked:before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-left: 4px;
+    margin-top: -1px;
+}
+
+select option {
+    color: black;
+}
+
+.mat-icon-search {
+    position: relative;
+    left: 95%;
+    top: -32px;
+}
+
+.clsFlexRow {
+    @include d-flex-row();
+}
+
+.clsflexRight {
+    @include d-flexRight();
+}
+
+.btnCrearReceta {
+    background: $colorBtnCrearReceta;
+    height: 40px;
+    border-radius: 4px;
+    width: 10%;
+    color: $colorBgwhite;
+    border: none;
+    margin-top: 15px;
+    outline: none;
+    cursor: pointer;   
+}
+
+.btnCrearReceta:hover {
+    background: $colorBtnHoverCrearReceta;
+    cursor: pointer;
+} 
+
+.linkLimpiarBusqueda {
+    margin-top: 25px;
+    padding-right: 30px;
+    text-decoration: none;
+    outline: none;
+    color: $colorBtnBusqueda;
+    cursor: pointer;
+}
+
+.linkLimpiarBusqueda:hover {
+    color: $colorBtnHoverBusqueda;
+}
+
+.modalMedicamentos__content {
+    height: 530px;
+    width: 716px;
+    border-radius: 4px;
+    background: $colorBgwhite;
+    position: relative;
+
+    .lbl {
+        font-size: $fontSizeLblConsultaEnc;
+        font-weight: bold;
+        color: $colorFontConsultaEnc;
+    }
+    
+    .txt {
+        margin-top: 10px;
+        height: 40px;
+        border-radius: 4px;
+        border: 1px solid $colorTextBoxConsultaEnc;
+        width: 100%;
+        outline: none;
+        padding-left: 10px;
+    }
+
+    .chb {
+        margin-right: 10px;
+    }
+
+    .txa {
+        margin-top: 10px;
+        border-radius: 4px;
+        border: 1px solid $colorTextBoxConsultaEnc;
+        width: 100%;
+        outline: none;
+        padding-left: 10px;
+        padding-top: 5px;
+    }
+
+    .select {
+        margin-top: 10px;
+        height: 40px;
+        border-radius: 4px;
+        border: 1px solid $colorTextBoxConsultaEnc;
+        width: 100%;
+        outline: none;
+        background: $colorBgwhite;
+        padding-left: 10px;
+    } 
+
+    .txtAutocomplete {
+        @extend .txt;
+        width: 100%;
+    }
+
+    .modalMedicamentos__content--borderTopModal {
+        background: $colorDvContenedorReceta; 
+        height: 8px; 
+        width: 764px; 
+        border-radius: 4px 4px 0px 0px; 
+        margin-bottom: 10px;
+        position: absolute;
+        top: -24px;
+        left: -24px;
+    }
+
+    .modalMedicamentos__content--dvClose {
+        @include d-flex-row();
+        margin-bottom: 60px;
+
+        .modalMedicamentos__content--btnClose {
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+        }
+    }
+
+    .modalMedicamentos__content--titleMedicamentos {
+        padding-bottom: 20px;
+        font-size: $fontSizeTituloMedicamentos;
+        font-weight: bold;
+    }
+
+    .modalMedicamentos__content--formContent{
+        margin-left: -10px;
+
+        .clsObligatorio {
+            color: $colorObligatorio;
+            padding-left: 5px;
+        }
+
+        .clsObligatorioTxt {
+            color: $colorObligatorio;
+            padding-left: 5px;
+            font-size: 10px;
+            margin-bottom: -14px;
+        }
+
+        .clsObligatorioTxtAuto {
+            color: $colorObligatorio;
+            padding-left: 5px;
+            font-size: 10px;
+            margin-top: -29px;
+            padding-bottom: 18px;
+            margin-bottom: -3px;
+        }
+
+        .modalMedicamentos__content--lblMedicamentos {
+            font-size: $fontSizeLblMedicamentos;
+            font-weight: bold;
+        }
+
+        .autocompleteContainer__elements--posologia {
+            @include d-flex-row();
+            padding: 0px;
+        }
+
+        .autocompleteContainer__elements--cadaFrecuencia {
+            margin-top: 6%;
+        }
+
+        .autocompleteContainer__elements--indicaciones {
+            padding: 0px;
+            margin-top: 20px;
+        }
+
+        .autocompleteContainer__elements--otroMedicamento {
+            padding-right: 30px;
+            margin-top: 15px;
+            @include d-flex-center();
+        }
+    }
+}
+
+.dvErrorMed {
+    margin-top: -30px;
+    width: 50%;
+}
+
+.dvErrorCantidad {
+    margin-left: -2px;
+    width: 80%;
+}
+
+.dvErrorDosisPresentacion {
+    margin-left: 8px;
+    width: 50%;
+    margin-bottom: -23px;
+}
+
+.dvErrorObservacion {
+    margin-bottom: -20px;
+    margin-top: -5px;
+    margin-left: 3px;
+    width: 50%;
+}
+
+.mat-option {
+    font-size: 14px !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+      min-width: 686px;
+}

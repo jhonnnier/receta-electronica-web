@@ -1,0 +1,24 @@
+<div class="staticContainer">
+    <div class="staticContainer__title">
+        <div class="staticContainer__title--iconDV">
+            <img (click)="backClicked()" src="./../../../../assets/icons/Arrow_back_24px.svg" alt="imgArrowBack" class="staticContainer__title--imgArrowBack" />
+        </div>
+        <span class="staticContainer__title--title">{{ 'VER_DETALLE_AUDITOR.recetaNum' | translate }} {{ setDetalleReceta?.numeroReceta }}</span>
+        <div class="staticContainer__title--estado clsEstadoRevision" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'EN_REVISION'">{{ setDetalleReceta?.estadoReceta?.descripcion }}</div>
+        <div class="staticContainer__title--estado clsEstadoGenerada" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'GENERADA'">{{ setDetalleReceta?.estadoReceta?.descripcion }}</div>
+        <div class="staticContainer__title--estado clsEstadoAprobada" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'APROBADA'">{{ setDetalleReceta?.estadoReceta?.descripcion }}</div>
+        <div class="staticContainer__title--estado clsEstadoEnvioPendiente" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'ENVIO_PENDIENTE'">{{ setDetalleReceta?.estadoReceta?.descripcion }}</div>
+        <div class="staticContainer__title--estado clsEstadoEnviada" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'ENVIADA'">{{ setDetalleReceta?.estadoReceta?.descripcion }}</div>
+        <div class="staticContainer__title--estado clsEstadoRechazada" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'RECHAZADA'">{{ setDetalleReceta?.estadoReceta?.descripcion }}</div>
+        <div class="staticContainer__title--estado clsEstadoDispensada" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'DISPENSADA'">{{ setDetalleReceta?.estadoReceta?.descripcion }}</div>
+        <div class="staticContainer__title--estado clsEstadoVencida" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'VENCIDA'">{{ setDetalleReceta?.estadoReceta?.descripcion }}</div>
+    </div>
+    <div class="staticContainer__headerRecetaSiniestro">
+        <div class="staticContainer__headerRecetaSiniestro--divContent">
+            <p class="staticContainer__headerRecetaSiniestro--label">{{ 'VER_DETALLE_AUDITOR.prescripta' | translate }}</p><span class="staticContainer__headerRecetaSiniestro--texto">{{ setDetalleReceta?.fechaCreacion | date:'dd/MM/yyyy' }}</span>
+            <div class="staticContainer__headerRecetaSiniestro--divContent" *ngIf="setDetalleReceta?.estadoReceta?.codigo === 'DISPENSADA'">
+                <p class="staticContainer__headerRecetaSiniestro--label">{{ 'VER_DETALLE_AUDITOR.dispensada' | translate }}</p><span class="staticContainer__headerRecetaSiniestro--texto">{{ setDetalleReceta?.fechaDispensacion | date:'dd/MM/yyyy' }}</span>
+            </div>
+        </div>
+    </div>
+</div> 

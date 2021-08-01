@@ -1,0 +1,59 @@
+@import '_all';
+@import 'mixins';
+
+.staticContainer {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 72px;
+    background-color: $mainBg;
+    z-index: 100;
+
+    .staticContainer__breadcrumbsCls {
+        @include d-flex-row();
+        @include d-flex-v-center();
+    }
+
+    .staticContainer__breadcrumbsCls--imgChevronRight {
+        height: 18px;
+        width: 18px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .staticContainer__title {
+        @include d-flex-row();
+        @include d-flex-v-center();
+
+        .staticContainer__title--imgArrowBack {
+            height: 24px;
+            width: 24px;   
+            margin-top: 25px;         
+        }
+
+        .staticContainer__title--title {
+            font-size: $fontSizeConsultaEnc;
+            font-weight: bold;
+            color: $colorFontConsultaEnc;
+            margin-left: 15px;
+            margin-top: 25px;
+        }
+    }
+    
+    .staticContainer__headerRecetaSiniestro {
+        margin-top: 10px;
+
+        .staticContainer__headerRecetaSiniestro--divContent {
+            @include d-flex-row();
+            padding-top: 10px;
+
+            .staticContainer__headerRecetaSiniestro--label {
+                font-weight: bold;
+                padding-right: 10px;
+            }
+
+            .staticContainer__headerRecetaSiniestro--texto {
+                padding-right: 10px;
+            }
+        }
+    }
+}

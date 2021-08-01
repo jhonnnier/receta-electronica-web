@@ -1,0 +1,25 @@
+<amplify-auth-container>
+  <amplify-authenticator usernameAlias="email">
+    <amplify-sign-in slot="sign-in"
+                     usernameAlias="email"
+                     class="test"
+                     [formFields]="formFields.amplifyAuthenticator"
+                     [headerText]="text.AMPLIFY_AUTHENTICATOR"
+                     [submitButtonText]="text.START"
+    ></amplify-sign-in>
+    <amplify-forgot-password slot="forgot-password"
+                             usernameAlias="email"
+                             [formFields]="formFields.forgotPassword"
+                             [headerText]="text.FORGOT_PASSWORD"
+                             [sendButtonText]="text.SEND"
+    ></amplify-forgot-password>
+    <amplify-sign-up slot="sign-up"
+                     usernameAlias="email"
+                     [formFields]="formFields.signUp"
+                     [headerText]="text.SIGN_UP"
+                     [haveAccountText]="text.HAVE_ACCOUNT"
+                     [submitButtonText]="text.CREATE"
+                     [signInText]="text.SIGN_UP"
+    ></amplify-sign-up>
+  </amplify-authenticator>
+</amplify-auth-container>

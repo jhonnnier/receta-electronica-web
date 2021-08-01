@@ -1,0 +1,35 @@
+@import '_all';
+
+.conexia-bar {
+  @include d-flex-row();
+
+  &_blue30 {
+    width: 10%;
+    background: $colorcxBlue30;
+    height: $sizeConexiaBar;
+  }
+
+  &_blue50 {
+    width: 10%;
+    background: $colorcxBlue50;
+    height: $sizeConexiaBar;
+  }
+
+  &_blue100 {
+    width: 30%;
+    background: $colorcxBlue100;
+    height: $sizeConexiaBar;
+  }
+
+  &_orange50 {
+    width: 30%;
+    background: $colorcxOrange50;
+    height: $sizeConexiaBar;
+  }
+
+  &_orange100 {
+    width: 20%;
+    background: $colorcxOrange100;
+    height: $sizeConexiaBar;
+  }
+}

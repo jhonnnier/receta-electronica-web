@@ -1,0 +1,25 @@
+<div class="staticContainer">
+    <div class="staticContainer__breadcrumbsCls">
+        <span routerLink="/pages/receta/buscarReceta" class="txtBreadcrumbs">{{ 'BREADCRUMBS.recetas' | translate }}</span>
+        <img class="staticContainer__breadcrumbsCls--imgChevronRight" src="./../../../assets/icons/Double_chevron_right_24px.svg" alt="imgSeparadorBreadcrumbs" />
+        <span routerLink="/pages/consultaTrabajador" class="txtBreadcrumbs">{{ 'BREADCRUMBS.trabajadores' | translate }}</span>
+        <img class="staticContainer__breadcrumbsCls--imgChevronRight" src="./../../../assets/icons/Double_chevron_right_24px.svg" alt="imgSeparadorBreadcrumbs" />
+        <span class="txtBreadcrumbs" (click)="backClicked()">{{ setTrabajadorSiniestroReceta?.afiliado?.apellidos }} {{ setTrabajadorSiniestroReceta?.afiliado?.nombres }}</span>
+        <img class="staticContainer__breadcrumbsCls--imgChevronRight" src="./../../../assets/icons/Double_chevron_right_24px.svg" alt="imgSeparadorBreadcrumbs" />
+        <span class="txtBreadcrumbsActive">{{ 'RECETA.numSiniestro' | translate }}: {{ setTrabajadorSiniestroReceta?.siniestro?.numeroSiniestro }}</span>
+    </div>
+    <div class="staticContainer__title">
+        <img src="./../../../../assets/icons/Arrow_back_24px.svg" alt="imgArrowBack" class="staticContainer__title--imgArrowBack" (click)="backClicked()" />
+        <span class="staticContainer__title--title">{{ 'RECETA.numSiniestro' | translate }}: {{ setTrabajadorSiniestroReceta?.siniestro?.numeroSiniestro }}</span>
+    </div>
+    <div class="staticContainer__headerRecetaSiniestro">
+        <div class="staticContainer__headerRecetaSiniestro--divContent">
+            <p class="staticContainer__headerRecetaSiniestro--label">{{ 'RECETA.fechaSiniestro' | translate }}:</p> <span class="staticContainer__headerRecetaSiniestro--texto">{{ setTrabajadorSiniestroReceta?.siniestro?.fechaSiniestro | date:'dd/MM/yyyy' }}</span>
+            <span class="espacio"></span>
+            <p class="staticContainer__headerRecetaSiniestro--label">{{ 'CONSULTAR_TRABAJADOR.financiador' | translate }}:</p> <span class="staticContainer__headerRecetaSiniestro--texto">{{ afiliadoServices.getRazonSocialFinanciador() }}</span>
+        </div>
+        <div class="staticContainer__headerRecetaSiniestro--divContent">
+            <p class="staticContainer__headerRecetaSiniestro--label">{{ 'RECETA.descSiniestro' | translate }}:</p> <span class="staticContainer__headerRecetaSiniestro--texto">{{ setTrabajadorSiniestroReceta?.siniestro?.descripcion }}</span>
+        </div>
+    </div>
+</div>

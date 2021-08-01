@@ -1,0 +1,114 @@
+@import "./../../../styles/base/all";
+
+.conexiaBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: $sizeConexiaBar;
+    z-index: 100;
+    width: 100%;
+    @include d-flex-row();
+}
+
+.conexiaBar__blue30 {
+    width: 10%;
+    background: $colorcxBlue30;
+    height: $sizeConexiaBar;
+}
+
+.conexiaBar__blue50 {
+    width: 10%;
+    background: $colorcxBlue50;
+    height: $sizeConexiaBar;
+}
+
+.conexiaBar__blue100 {
+    width: 30%;
+    background: $colorcxBlue100;
+    height: $sizeConexiaBar;
+}
+
+.conexiaBar__orange50 {
+    width: 30%;
+    background: $colorcxOrange50;
+    height: $sizeConexiaBar;
+}
+
+.conexiaBar__orange100 {
+    width: 20%;
+    background: $colorcxOrange100;
+    height: $sizeConexiaBar;
+}
+
+header {
+    position: fixed;
+    top: $sizeConexiaBar;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background: $colorBgwhite;
+    height: $sizeHeader;
+    padding: 0rem 1rem;
+    border-bottom: 2px solid #ccc;
+    @include d-flex-center();
+    justify-content: space-between;
+}
+
+.headerCls__imgConexia {
+    height: 40px;
+    width: 156px;
+    margin-left: 10px;
+}
+
+.headerCls__userInfo {
+    height: 40px;
+    margin-right: 10px;
+    font-size: $fontSizeUserInfo;
+    color: $colorFontUserInfo;
+    @include d-flex-center();
+}
+
+.headerCls__userInfo--imgChevron {
+    padding-left: 5px;
+}
+
+.acronimoUsuario {
+    top: 33px;
+    left: 1043px;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    text-align: center;
+    font: normal normal bold 10px/14px Open Sans;
+    letter-spacing: 0px;
+    color: #004C59;
+    opacity: 1;
+    background-color: #87D1FF;
+    border-radius: 31px;
+    padding: 5px;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+::ng-deep .menu {
+    width: 220px;
+    min-height: 50px !important;
+    margin-top: 20px;
+    border-color: #AFC4D1 !important;
+    border: 1px solid;
+}
+
+.triangle-up {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    position: absolute;
+    top: 0px;
+    right: 22px;
+    transform-origin: 0 100%;
+    transform: rotate(45deg);
+    background: white;
+    border-color: #AFC4D1 !important;
+    border: 1px solid;
+    border-bottom: none;
+    border-right: none;
+}

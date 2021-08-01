@@ -1,0 +1,31 @@
+<div class="icono">
+  <mat-icon matDialogClose style="align-self: end" (click)="cerrarModal(false)">clear</mat-icon>
+</div>
+<div class="p-grid">
+  <div class="p-col-12 p-text-justify">
+    <p class="titulo">{{ titulo }}</p>
+  </div>
+  <div class="p-col-12 p-text-justify">
+    <a class="mensaje" [innerHTML]="mensaje"></a>
+  </div>
+</div>
+<div class="p-grid p-mt-4 p-container_full d_flex justify_content_center receta_div_buttons">
+  <div class="p-col-12">
+    <button pButton
+            pRipple
+            type="button"
+            class="btn-block btn_color_primary"
+            label="{{tituloBotonConfirmar}}"
+            (click)="confirmar()"
+    ></button>
+  </div>
+  <div class="p-col-12">
+    <button pButton
+            pRipple
+            type="button"
+            class="btn-block btn_color_none"
+            label="{{ tituloBotonRegresar }}"
+            (click)="regresar()"
+    ></button>
+  </div>
+</div>

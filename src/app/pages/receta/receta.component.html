@@ -1,0 +1,151 @@
+<app-top></app-top>
+<div class="main-content-sinMenu">
+    <main>
+        <div class="main-content-sinMenu__content">
+            <app-receta-encabezado [setTrabajadorSiniestroReceta]="trabajadorSiniestroRecetaDTO"></app-receta-encabezado>
+            <div *ngIf="recetaCreada" class="main__recetaEnviada">
+                <div class="main__recetaEnviada--borderReceta"></div>
+                <div class="main__recetaEnviada--imgConfirma columns">
+                    <div class="column is-12 bloqueCenter">
+                        <div class="column is-12 imagenReceta">
+                            <img src="./../../../../assets/images/Confirmed-bro.svg" alt="imgConfirmaReceta" />
+                        </div>
+                        <div class="column is-12">
+                            <p class="lblRecetaCreada">{{ 'RECETA.recetaCreada' | translate }}</p>
+                        </div>
+                        <div class="column is-12 lblTextoReceta">
+                            <p>{{ 'RECETA.textoRecetaCreada' | translate }}</p>
+                            <p>{{ 'RECETA.enlaceRecetaCreadaParteUno' | translate }} <a class="enlaceReceta" (click)="backClicked()">{{ 'RECETA.enlaceRecetaCreadaParteDos' | translate }}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="!recetaCreada">
+                <form [formGroup]="recetaForm" autocomplete="off">
+                    <div class="receta__content">
+                        <div class="receta__content--borderReceta"></div>
+                        <p class="receta__content--tituloReceta">{{ 'RECETA.tituloReceta' | translate }}</p>
+                        <p class="receta__content--diagnostico">{{ 'RECETA.tituloDx' | translate }}: {{ cantDx }}</p>
+                        <div class="receta__content--diagnosticoComponent">
+                            <app-diagnosticos #dxComponent (cantidadAlertaDx)="cantAlertaDx = $event" (cantidadDx)="cantDx = $event"></app-diagnosticos>
+                        </div>
+                        <div class="pnlMedicamentosToLeft columns">
+                            <div class="column is-12">
+                                <div class="column is-12">
+                                    <div class="receta__content--medicamentoContainer">                    
+                                        <p class="receta__content--medicamentosComponent">{{ 'RECETA.tituloMedicamento' | translate }}: {{ (trabajadorSiniestroService.getMedicamentosSeleccionadosTrabajador() | async)?.length }} <mat-icon class="receta__content--medicamentosIconComponent" matTooltip="{{ 'RECETA.minimo1Dx' | translate }}" [matTooltipPosition]="'right'">info_outline</mat-icon></p>
+                                        <div *ngIf="(trabajadorSiniestroService.getMedicamentosSeleccionadosTrabajador() | async)?.length > 0">
+                                            <div *ngFor="let medto of trabajadorSiniestroService.getMedicamentosSeleccionadosTrabajador() | async; let i = index" class="receta__content--medicamentosAgregados">
+                                                <div class="clsflexRight">
+                                                    <div class="clsflexLeft">
+                                                        <p class="receta__content--medicamentosAgregados--tituloMedicamento">{{ titulo(medto.medicamento.monodroga) + ' - ' + medto.medicamento.nombre + ' - ' + medto.medicamento.presentacion }}</p>
+                                                    </div>
+                                                    <a (click)="editarMedicamento(medto, i)" class="receta__content__medicamentosAgregados--btnEditar clsEspacioDerecha40"><mat-icon class="clsEspacioDerecha30" matPrefix>edit</mat-icon>Editar</a>
+                                                    <a (click)="borrarMedicamento(i)" class="receta__content__medicamentosAgregados--btnBorrar clsEspacioDerecha40"><mat-icon class="clsEspacioDerecha30" matPrefix>delete</mat-icon>Eliminar</a>
+                                                </div>
+                                                <div class="receta__content__medicamentosAgregados--posologia column is-12">
+                                                    <div class="column is-2">
+                                                        <label class="clsFlexCenter lbl">{{ 'RECETA.cantidadMedto' | translate }}:<p class="texto">{{ medto.cantidadMedto }}</p></label>
+                                                    </div>
+                                                    <div class="column is-3">
+                                                        <label class="clsFlexCenter lbl">{{ 'RECETA.dosis' | translate }}:<p class="texto">{{ medto.cantDosis !== 0 ? medto.cantDosis : '' }} {{ medto.presentacion === 'NO_APLICA' ? 'NO APLICA' : medto.presentacion }}</p></label>
+                                                    </div>
+                                                    <div class="column is-3">
+                                                        <label class="clsFlexCenter lbl">{{ 'RECETA.frecuencia' | translate }}:<p class="texto">{{ medto.cantFrecuencia }} {{ medto.frecuenciaDescripcion }}</p></label>
+                                                    </div>
+                                                    <div class="column is-5">
+                                                        <label class="lbl">{{ 'RECETA.indicaciones' | translate }}:<small class="texto">{{ medto.indicaciones }}</small></label>
+                                                    </div>
+                                                </div>                                    
+                                            </div>
+                                        </div>
+                                        <div class="receta__content--medicamentosAdd" (click)="cantDx <= 0 ? null : agregarMedicamento()">
+                                            <mat-icon class="receta__content--medicamentosIconAdd" aria-hidden="false" aria-label="iconAdd">add</mat-icon><p>Agregar medicamento</p>
+                                        </div>
+                                        <div class="dvErrorMed" *ngIf="showMedtoRequerido && (trabajadorSiniestroService.getMedicamentosSeleccionadosTrabajador() | async)?.length === 0">
+                                            <app-error-field [mensajeCampo]='"RECETA.faltadxOrMedto"'></app-error-field>
+                                        </div> 
+                                        <p class="receta__content--obsDx">{{ 'RECETA.obsMedicamentos' | translate }}: <b>{{ trabajadorSiniestroService.getCantAlertasMedicamento() | async }}</b></p>
+                                        <div *ngIf="(trabajadorSiniestroService.getAlertasDxMed() | async).alertas && (trabajadorSiniestroService.getAlertasDxMed() | async).alertas.length > 0">
+                                            <div class="receta__content--alertaDx" *ngFor="let alerta of (trabajadorSiniestroService.getAlertasDxMed() | async).alertas">
+                                                <app-alert *ngIf="alerta.tipo === 'Medicamento'" 
+                                                    [tipoAlerta]="'W'" 
+                                                    [mensaje]="getMensajeAlerta(alerta)" 
+                                                    [mostrarBotonCerrar]="false">
+                                                </app-alert>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div *ngIf="(trabajadorSiniestroService.getMedicamentosSeleccionadosTrabajador() | async)?.length > 0" class="clsAlertaMedto">
+                                    <mat-icon class="clsAlertaMedto__iconAlerta">info_outline</mat-icon>
+                                    <p class="clsAlertaMedto__textoAlerta">{{ 'RECETA.msnMedtoTtmto' | translate }} <span class="clsAlertaMedto__textoTtmtoAlerta">{{ (trabajadorSiniestroService.getTtmtoProlongado() | async) ? ['RECETA.prolongado' | translate] : ['RECETA.normal' | translate] }}</span></p>
+                                </div>
+                                <div class="column is-12">
+                                    <div class="receta__envioReceta">
+                                        <p class="receta__envioReceta--Afiliado">{{ 'RECETA.envioRecetaAfiliado' | translate }}</p>
+                                        <p class="receta__envioReceta--TextoEnvio">{{ 'RECETA.envioRecetaAfiliadoTexto' | translate }}</p>
+                                    </div>
+                                </div>
+                                <div class="column is-12">
+                                    <div class="receta__correoEnvioReceta">
+                                        <div class="column is-12">
+                                            <label class="receta__correoEnvioReceta--lblCorreo">{{ 'RECETA.correAfiliado' | translate }}</label><span class="clsObligatorio">*</span>
+                                        </div>
+                                        <div class="column is-3">
+                                            <input class="txt" 
+                                            type="text" 
+                                            id="txtCorreo"
+                                            formControlName="correo"
+                                            [marcarError]="hasErrorControl('correo','required') || hasErrorControl('correo','pattern')" />       
+                                        </div> 
+                                        <div class="dvErrorCorreo" *ngIf="correoInvalido">
+                                            <app-error-field *ngIf="recetaForm.get('correo').hasError('required')" [mensajeCampo]='"campoRequerido"'></app-error-field>
+                                            <app-error-field *ngIf="recetaForm.get('correo').errors?.pattern" [mensajeCampo]='"correoInvalido"'></app-error-field>
+                                        </div>           
+                                    </div>
+                                </div>
+                                <div class="column is-12">
+                                    <div class="receta__firmaReceta">
+                                        <div class="receta__firmaReceta__firmaContrasenia column is-12">
+                                            <label class="receta__firmaReceta__firmaContrasenia--firmaCorreo">{{ 'RECETA.firmaMedico' | translate }}</label>
+                                            <p class="receta__firmaReceta__firmaContrasenia--Texto">{{ 'RECETA.escribaContrasenia' | translate }}</p>
+                                            <br />
+                                            <label for="txtPass" class="receta__firmaReceta__firmaContrasenia--contrasenia">{{ 'contrasenia' | translate }}</label><span class="clsObligatorio">*</span>
+                                            <div class="receta__firmaReceta__firmaContrasenia--contraseniaInput column is-4">
+                                                <input class="txt" 
+                                                    type="{{ btnShowHide ? 'password' : 'text' }}" 
+                                                    id="txtPass"
+                                                    formControlName="contrasenia"
+                                                    [marcarError]="passInvalido || (showPassInvalid && !passInvalido)" />
+                                                <small (click)="mostrarPass()" class="receta__firmaReceta__firmaContrasenia--conShowHide">{{ btnShowHide ? ('mostrar' | translate) : ('ocultar' | translate) }}</small>       
+                                            </div>
+                                            <div class="dvErrorFirma" *ngIf="passInvalido">
+                                                <app-error-field [mensajeCampo]='"campoRequerido"'></app-error-field>
+                                            </div>
+                                            <div class="dvErrorFirma" *ngIf="showPassInvalid && !passInvalido">
+                                                <app-error-field [mensajeCampo]='"RECETA.passIncorrectoMedico"'></app-error-field>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="(trabajadorSiniestroService.getAlertasDxMed() | async).alertas.length > 0 " class="clsAlertaFinal">
+                        <mat-icon class="clsAlertaFinal__iconAlerta">info_outline</mat-icon>
+                        <p class="clsAlertaFinal__textoAlerta">{{ 'RECETA.msgAlertaFinal' | translate }}</p>
+                    </div>
+                    <div class="btnSection">
+                        <a (click)="cancelarReceta()" class="btnCancelar">{{ 'RECETA.btnCancelarCarga' | translate  }}</a>
+                        <button (click)="crearReceta()" [disabled]="disableButton" class="btnCrearReceta">{{ 'RECETA.btnCrearReceta' | translate  }}</button>
+                    </div>
+                </form>
+            </div>
+           <br />
+        </div>
+    </main>
+</div>
+<app-footer></app-footer>

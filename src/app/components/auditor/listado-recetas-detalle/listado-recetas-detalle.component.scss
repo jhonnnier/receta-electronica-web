@@ -1,0 +1,201 @@
+@import '_all';
+
+.clsCenterSpinner {
+    @include d-flexh-center();
+}
+
+table {
+    width: 100%;
+}
+  
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+th.mat-header-cell {
+    text-align: center;
+    padding-left: 15px;
+}
+
+tr.mat-header-row {
+    background: $colorHeaderTable;
+}
+
+tr.mat-row:hover {
+    -webkit-box-shadow: inset 0px 0px 3px 3px #00000026;
+    -moz-box-shadow: inset 0px 0px 3px 3px #00000026;
+    box-shadow: inset 0px 0px 3px 3px #00000026;
+    cursor: pointer;
+}
+
+::ng-deep .mat-sort-header-container {
+    display:flex;
+    justify-content: center;
+}
+
+.clsCenterHeaderTable {
+    text-align: center;
+    width: 13%;
+}
+
+.clsLeftHeaderTable {
+    text-align: left;
+}
+
+.clsEstadoCenter{
+    display: flex;
+    justify-content: center;
+}
+
+.clsNumReceta {
+    @extend .clsCenterHeaderTable;
+    text-decoration: underline;
+    color: $colorUrlNumReceta;
+    cursor: pointer;
+}
+
+.clsEstadoGenerada {
+    background-color: #DDE6EB;
+    color: #2C4352;
+    width: 90px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.clsEstadoRevision {
+    background-color: #C6D5DE;
+    color: #041C2B;
+    width: 96px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.clsEstadoAprobada {
+    background-color: #D4CCFF;
+    color: #221B4D;
+    width: 89px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.clsEstadoEnviada {
+    background-color: #ABF2FF;
+    color: #004C59;
+    width: 85px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.clsEstadoRechazada {
+    background-color: #FFB8BE;
+    color: #610008;
+    width: 100px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.clsEstadoDispensada {
+    background-color: #BFFFDE;
+    color: #004D25;
+    width: 100px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.clsEstadoEnvioPendiente {
+    background-color: #FFF1AB;
+    color: #5C2E00;
+    width: 120px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.clsEstadoVencida {
+    background-color: #FFEBED;
+    color: #610008;
+    width: 85px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+
+.mat-paginator-sticky {
+    position: sticky;
+    z-index: 10;
+    background: transparent;
+}
+
+.mat-paginator-navigation-first {
+    display: none !important;
+}
+
+.mat-paginator-navigation-last {
+    display: none !important;
+}
+
+.labelTable {
+    text-align: center;
+}
+
+.detalleContainer {
+    height: 400px;
+    overflow: auto;
+    width: 100%;
+    margin-bottom: 20px;
+
+    .detalleContainer__noBusqueda {
+        width: 100%;
+        
+        .detalleContainer__noBusqueda--imgNoBusqueda {
+            width: 35%;
+            margin-top: 50px;
+            background: $mainBg;
+            margin: 0 auto;
+        }
+
+        .detalleContainer__noBusqueda--textoNoBusqueda {
+            color: $colorFontConsultaEnc;
+            font-size: $fontSizeTextoDetalle;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .detalleContainer__noBusqueda--textoDosNoBusqueda {
+            color: $colorFontConsultaEnc;
+            font-size: $fontSizeTextoDosDetalle;
+            margin-top: 20px;
+            text-align: center;
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+    }
+}
+
+.detallePaginador {
+    display: flex;
+    align-items: center;
+
+    .detallePaginador--lblExportar {
+        font-size: $fontSizeLblExportar;
+        color: $colorFontExportar;
+        padding-left: 8px;
+    }
+
+    .detallePaginador--iconDv {
+        width: 30%;
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .detallePaginador--imgDownload {
+        height: 24px;
+        width: 24px;            
+    }
+
+    .detallePaginador--paginadorEnd {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,32 @@
+@import '_all';
+@import 'mixins';
+
+.labelAlertas {
+    font-size: $fontSizeLblAlertas;
+    font-weight: bolder;
+    color: $colorFontAlertas;
+    padding-left: 20px;
+}
+
+.containerDecision {
+ margin-top: 25px;
+}
+
+.labelDecision {
+  font-size: $fontSizeLblAlertas;
+  font-weight: bolder;
+  color: $colorFontAlertas;
+  padding-left: 20px;
+}
+
+.containerAlertas {
+    width: 31% !important;
+    margin-top: 35px;
+}
+
+.centrarPantalla {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

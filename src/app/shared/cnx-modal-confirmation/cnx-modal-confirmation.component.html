@@ -1,0 +1,31 @@
+<ng-container *ngIf="display">
+  <p-dialog header="{{title | translate}}"
+            [(visible)]="display"
+            [style]="{width: '33vw', borderTop: '8px solid #25BDD9'}"
+            [breakpoints]="{'1240px': '50vw', '1140px': '60vw', '960px': '75vw', '640px': '97vw'}"
+            [baseZIndex]="10000"
+            [modal]="true"
+            [draggable]="false"
+            [resizable]="false">
+    {{text | translate}}
+    <ng-template pTemplate="footer">
+      <button *ngIf="btnCancelShow"
+              pButton
+              pRipple
+              type="button"
+              class="btn-block btn_border_primary"
+              label="{{btnTextCancel | translate}}"
+              (click)="onClickCancel()"
+      ></button>
+      <button pButton
+              pRipple
+              type="button"
+              class="btn-block btn_color_primary"
+              label="{{btnTextConfirm | translate}}"
+              (click)="onClickConfirm()"
+      ></button>
+    </ng-template>
+  </p-dialog>
+</ng-container>
+
+

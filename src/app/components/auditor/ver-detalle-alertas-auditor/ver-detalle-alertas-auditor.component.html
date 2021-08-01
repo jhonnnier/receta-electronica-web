@@ -1,0 +1,41 @@
+<div class="dvContainer">
+    <ul>
+        <label *ngIf="recetaTrabajadorDTO.alertasReceta.length == 0" class="labelObservaciones">
+            {{ 'VER_DETALLE_AUDITOR.noHayAlertas' | translate  }}
+        </label>
+        <li class="borderListado" *ngIf="recetaTrabajadorDTO.alertasReceta.length > 0">
+            <div *ngFor="let alerta of recetaTrabajadorDTO.alertasReceta">
+                <div *ngIf="alerta.alertaMaestro.tipoAlerta == 3">
+                    <div class="textoAlertas">
+                        <label class="alertaCritica">{{ 'VER_DETALLE_AUDITOR.critica' | translate }}</label>
+                        &nbsp;
+                        <label class="parrafoCritica" [innerHTML]="getMensajeAlerta(alerta)"></label>
+                        &nbsp;
+                        <label *ngIf="alerta.descripcionInteraccionMedicamentosa?.length > 70 && !this.alertas[alerta.id]" class="botonLink" (click)="mostrarMas(alerta.id)">
+                            {{ 'VER_DETALLE_AUDITOR.mostrarMas' | translate }}
+                        </label>
+                        <label *ngIf="alerta.descripcionInteraccionMedicamentosa?.length > 70 && this.alertas[alerta.id]" class="botonLink" (click)="mostrarMenos(alerta.id)" >
+                            {{ 'VER_DETALLE_AUDITOR.mostrarMenos' | translate }}
+                        </label>
+                    </div>
+                    <div class="borderListado"></div>
+                </div>
+            </div>
+            <div *ngFor="let alerta of recetaTrabajadorDTO.alertasReceta">
+                <div *ngIf="alerta.alertaMaestro.tipoAlerta != 3">
+                    <div class="textoAlertas">
+                        <label [innerHTML]="getMensajeAlerta(alerta)"></label>
+                        &nbsp;
+                        <label *ngIf="alerta.descripcionInteraccionMedicamentosa?.length > 70 && !this.alertas[alerta.id]" class="botonLink" (click)="mostrarMas(alerta.id)">
+                            {{ 'VER_DETALLE_AUDITOR.mostrarMas' | translate }}
+                        </label>
+                        <label *ngIf="alerta.descripcionInteraccionMedicamentosa?.length > 70 && this.alertas[alerta.id]" class="botonLink" (click)="mostrarMenos(alerta.id)">
+                            {{ 'VER_DETALLE_AUDITOR.mostrarMenos' | translate }}
+                        </label>
+                    </div>
+                    <div class="borderListado"></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

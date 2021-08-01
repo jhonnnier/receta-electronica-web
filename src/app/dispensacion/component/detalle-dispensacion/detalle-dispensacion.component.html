@@ -1,0 +1,87 @@
+<app-top [mostrarUsuario]="false"></app-top>
+<div style="height: 80px;"></div>
+<div>
+  <div style="padding-top: 5%" *ngIf="mostrarAlertEstadoInvalido">
+    <app-alert [tipoAlerta]="'E'" [mensaje]="mensajeError"></app-alert>
+  </div>
+
+  <div [ngSwitch]="accion">
+
+    <div *ngSwitchCase="'salir'">
+      <app-empty-confirmacion-success [titulo]="'Salió de la receta'"
+                                      [mensaje]="'Para volver a ingresar debe escanear nuevamente el código QR que le proporcione el paciente.'"
+                                      [srcIcon]="'assets/icons/ilustracion-good bye.svg'"
+                                      [buttonsShow]="false"
+      ></app-empty-confirmacion-success>
+    </div>
+
+    <div *ngSwitchCase="'confirmada'">
+      <div *ngIf="mostrarConfirmacion">
+        <app-alert [tipoAlerta]="'S'"
+                   [mensaje]="mensajeError"
+        ></app-alert>
+      </div>
+      <app-empty-confirmacion-success [titulo]="'Receta dispensada'"
+                                      [mensaje]="'Puede enviar a su correo electrónico o descargar una copia de esta receta eligiendo la opción de su preferencia.'"
+                                      [srcIcon]="'assets/icons/confirmed-success.svg'"
+                                      (download)="descargarReceta()"
+                                      (send)="enviarReceta()"
+      ></app-empty-confirmacion-success>
+    </div>
+
+    <div *ngSwitchDefault>
+      <div *ngIf="isDataReady">
+        <div>
+          <h2 class="receta_text_color_black">Receta N°: {{detalleReceta.numeroReceta}}</h2>
+        </div>
+        <div class="p-mt-2 p-mb-5">
+          <span><strong class="receta_text_color_black">Prescripta: </strong> <span>{{detalleReceta.fechaCreacionConvertida}}</span></span>
+        </div>
+        <div>
+          <strong class="receta_text_color_black">Rp/</strong>
+        </div>
+        <div>
+          <div *ngFor="let medicamento of detalleReceta.medicamentosDtos;  let indice = index"
+               class="p-mt-4">
+            <div class="p-mt-1">
+              <strong class="receta_text_color_black p-mr-1">
+                {{indice + 1}}.
+              </strong>
+              <span>{{medicamento.monodroga.toUpperCase() + ' ' + medicamento.presentacion}}</span>
+            </div>
+            <div class="p-mt-1">
+              ({{medicamento.nombre.toUpperCase()}})
+            </div>
+            <div class="p-mt-1">
+              <strong class="receta_text_color_black">Cantidad: </strong>
+              <span>{{medicamento.cantidadEnvases}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-grid p-mt-4 p-container_full d_flex justify_content_center receta_div_buttons">
+          <div class="p-col-12">
+            <button pButton
+                    pRipple
+                    type="button"
+                    class="btn-block btn_color_primary"
+                    label="{{ 'BOTONES_TITULOS.btnDispensarReceta' | translate }}"
+                    (click)="pedirConfirmarDispensacion()"
+            ></button>
+          </div>
+          <div class="p-col-12">
+            <button pButton
+                    pRipple
+                    type="button"
+                    class="btn-block btn_color_none"
+                    label="{{ 'BOTONES_TITULOS.btnSalirReceta' | translate }}"
+                    (click)="salir()"
+            ></button>
+          </div>
+        </div>
+        <div style="height: 50px;"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

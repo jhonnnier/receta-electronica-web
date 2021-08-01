@@ -1,0 +1,78 @@
+<div *ngIf="dataSource.data.length === 0" class="detalleContainer columns">
+    <div class="detalleContainer__noBusqueda">
+        <div class="column is-12">
+            <div class="detalleContainer__noBusqueda--imgNoBusqueda">
+                <img *ngIf="sinResultado" src="./../../../../assets/images/EmptyState_Ilustracion_SinResultados.svg" alt="imgSinResultados" />
+            </div>
+        </div>
+        <div class="column is-12">
+            <div class="detalleContainer__noBusqueda--textoNoBusqueda">
+              <p *ngIf="sinResultado">{{ 'BUSCAR_RECETA.sinResultados' | translate }}</p>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div *ngIf="dataSource.data.length > 0">
+    <div class="detallePaginador">
+      <mat-paginator class="backgroundPaginator detallePaginador--paginadorEnd mat-paginator-sticky"
+        [length]="totalRecords"
+        [pageSize]="20"
+        [pageSizeOptions] = "[10, 20]"
+        (page)="pageEvent = handlePageEvent($event)">
+      </mat-paginator>
+    </div>
+    <div *ngIf="dataSource.data.length > 0" class="detalleContainer">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="numReceta">
+              <th mat-header-cell *matHeaderCellDef class="labelTable"> {{ 'LISTADO_RECETA_AUDITOR.numReceta' | translate }} </th>
+              <td mat-cell class="clsCenterHeaderTable clsNumReceta" *matCellDef="let element"> {{element.numeroReceta}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="labelTable"> {{ 'LISTADO_RECETA_AUDITOR.estado' | translate }} </th>
+              <td mat-cell class="clsCenterHeaderTable" *matCellDef="let element">
+                <div class="clsEstadoCenter">
+                  <div *ngIf="element.estadoReceta?.codigo === 'EN_REVISION'" class="clsEstadoRevision">{{element.estadoReceta.descripcion}}</div>
+                  <div *ngIf="element.estadoReceta?.codigo === 'GENERADA'" class="clsEstadoGenerada">{{element.estadoReceta.descripcion}}</div>
+                  <div *ngIf="element.estadoReceta?.codigo === 'APROBADA'" class="clsEstadoAprobada">{{element.estadoReceta.descripcion}}</div>
+                  <div *ngIf="element.estadoReceta?.codigo === 'RECHAZADA'" class="clsEstadoRechazada">{{element.estadoReceta.descripcion}}</div>
+                  <div *ngIf="element.estadoReceta?.codigo === 'DISPENSADA'" class="clsEstadoDispensada">{{element.estadoReceta.descripcion}}</div>
+                  <div *ngIf="element.estadoReceta?.codigo === 'ENVIADA'" class="clsEstadoEnviada">{{element.estadoReceta.descripcion}}</div>
+                  <div *ngIf="element.estadoReceta?.codigo === 'ENVIO_PENDIENTE'" class="clsEstadoEnvioPendiente">{{element.estadoReceta.descripcion}}</div>
+                  <div *ngIf="element.estadoReceta?.codigo === 'VENCIDA'" class="clsEstadoVencida">{{element.estadoReceta.descripcion}}</div>
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="prescripta">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="labelTable"> {{ 'LISTADO_RECETA_AUDITOR.prescripta' | translate }} </th>
+              <td mat-cell class="clsCenterHeaderTable" *matCellDef="let element"> {{element.fechaCreacion | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="prestador">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="labelTable"> {{ 'VER_DETALLE_AUDITOR.prestador' | translate }} </th>
+              <td mat-cell *matCellDef="let element">{{element.prestador?.cuit + ' - ' + element.prestador?.razonSocial}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="siniestro">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="labelTable"> {{ 'LISTADO_RECETA_AUDITOR.siniestro' | translate }} </th>
+              <td mat-cell class="clsCenterHeaderTable" *matCellDef="let element">{{element.siniestro?.numeroSiniestro}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="docTrabajador">
+              <th mat-header-cell *matHeaderCellDef class="labelTable"> {{ 'LISTADO_RECETA_AUDITOR.docTrabajador' | translate }} </th>
+              <td mat-cell class="clsCenterHeaderTable" *matCellDef="let element"> {{element.siniestro?.afiliado?.tipoDocumento + '-' + element.siniestro?.afiliado?.documento}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="verDetalleReceta(row.id)"></tr>
+        </table>
+    </div>
+  </div>

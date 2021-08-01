@@ -1,0 +1,36 @@
+<div class="p-grid justify-content_center p-text-center p-p-3">
+  <div class="p-col-12 p-sm-6  p-md-6 p-xl-6 p-px-xl-5">
+    <img src="{{srcIcon}}" width="100%" height="100%">
+  </div>
+  <div class="p-col-12 p-sm-6 p-md-6 p-xl-6 p-px-xl-5">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <span class="confirmation-success_title">{{titulo}}</span>
+      </div>
+      <div class="p-col-12 confirmation-success_text">
+        <span>{{mensaje}}</span>
+      </div>
+      <ng-container *ngIf="buttonsShow">
+        <div class="p-col-12 p-sm-6">
+          <button pButton
+                  pRipple
+                  type="button"
+                  class="btn-block btn_color_primary"
+                  label="{{ 'BOTONES_TITULOS.btnEnviar' | translate }}"
+                  (click)="onClickSend()"
+          ></button>
+        </div>
+        <div class="p-col-12 p-sm-6">
+          <button pButton
+                  pRipple
+                  type="button"
+                  class="btn-block btn_border_primary"
+                  label="{{ 'BOTONES_TITULOS.btnDescargar' | translate }}"
+                  (click)="onClickDownload()"
+          ></button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
