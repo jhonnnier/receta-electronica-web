@@ -6,13 +6,19 @@ function isMobile() {
     }
 }
 
-function passwordShow() {
-  const password = document.getElementById('password').value;
+function landscape() {
+    if (window.innerHeight > window.innerWidth) {
+        alert("Please use Landscape!");
+    }
+}
 
-  if (password.length > 0) {
-    const span = document.querySelector('#passwordShow');
-    const type = document.querySelector('#password').getAttribute('type') === 'password' ? 'text' : 'password';
-    span.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
-    document.querySelector('#password').setAttribute('type', type);
-  }
+function passwordShow() {
+    const password = document.getElementById('password').value;
+
+    if (password.length > 0) {
+        const span = document.querySelector('#passwordShow');
+        const type = document.querySelector('#password').getAttribute('type') === 'password' ? 'text' : 'password';
+        span.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
+        document.querySelector('#password').setAttribute('type', type);
+    }
 }

@@ -10,6 +10,8 @@ import {AuthorizationService} from "@services/auth/authorization.service";
 import {CnxMessageService} from "@services/shared/cnx-message.service";
 
 declare let isMobile: any;
+declare let landscape: any;
+
 
 @Component({
   selector: 'app-login-home',
@@ -36,7 +38,11 @@ export class LoginHomeComponent {
     this.loginFormInit();
 
     if (isMobile()) {
-      document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
+      // document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
+    }
+
+    if (landscape()) {
+      alert('modo landscape');
     }
   }
 
