@@ -6,12 +6,12 @@ function isMobile() {
     }
 }
 
-function landscape() {
+function portrait() {
     if (window.innerHeight > window.innerWidth) {
-        return false;
+        return true;
     }
 
-    return true;
+    return false;
 }
 
 function passwordShow() {

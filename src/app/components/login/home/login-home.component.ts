@@ -1,4 +1,4 @@
-import {Component, NgZone} from '@angular/core';
+import {AfterViewInit, Component, HostListener, NgZone} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationDetails, CognitoUser, CognitoUserPool} from 'amazon-cognito-identity-js';
 import {Router} from "@angular/router";
@@ -10,7 +10,7 @@ import {AuthorizationService} from "@services/auth/authorization.service";
 import {CnxMessageService} from "@services/shared/cnx-message.service";
 
 declare let isMobile: any;
-declare let landscape: any;
+declare let portrait: any;
 
 
 @Component({
@@ -18,7 +18,8 @@ declare let landscape: any;
   templateUrl: './login-home.component.html',
   styleUrls: ['./login-home.component.scss', '../login.component.scss']
 })
-export class LoginHomeComponent {
+export class LoginHomeComponent implements AfterViewInit {
+
   loginForm: FormGroup = <FormGroup>{};
   login: Login = <Login>{};
   userRol = '';
@@ -37,13 +38,24 @@ export class LoginHomeComponent {
   ) {
     this.getI18();
     this.loginFormInit();
+  }
 
-    if (isMobile()) {
-      // document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
-    }
-    this.mobileMode = 'en landsacape';
-    if (landscape()) {
-      this.mobileMode = 'en potrait';
+  ngAfterViewInit(): void {
+    this.onOrientationChange();
+  }
+
+  @HostListener('window:orientationchange', ['$event'])
+  onOrientationChange() {
+    const div = document.getElementById("block-ui__wrapper");
+
+    if (div) {
+      if (!portrait()) {
+        document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
+        this.mobileMode = 'en landsacape';
+        return;
+      }
+      document.getElementById("block-ui__wrapper").classList.remove("block-ui__wrapper");
+      this.mobileMode = 'en portrait';
     }
   }
 
