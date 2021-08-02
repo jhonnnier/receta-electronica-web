@@ -27,7 +27,7 @@ export class LoginHomeComponent {
   errorShow = false;
   i18: any;
   mobileMode = ''
-  // isMobile = isMobile;
+  isPortrait: boolean;
   height = 0;
   width = 0;
 
@@ -57,9 +57,11 @@ export class LoginHomeComponent {
       console.log(`height: ${height}, width: ${width} `);
 
       if (height > width) {
+        this.isPortrait = true;
         this.mobileMode = `portrait: height: ${height}, width: ${width} `;
         document.getElementById("block-ui__wrapper").classList.remove("block-ui__wrapper");
       } else {
+        this.isPortrait = false;
         this.mobileMode = `landsacape: height: ${height}, width: ${width} `;
         document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
       }
