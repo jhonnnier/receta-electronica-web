@@ -47,8 +47,8 @@ export class LoginHomeComponent {
   @HostListener('window:orientationchange')
   @HostListener('window:load')
   @HostListener('window:resize')
-  onOrientationChange() {
-    const div = document.getElementById("block-ui__wrapper");
+  onOrientationChange(): void {
+    const div = document.getElementById('block-ui__wrapper');
 
     if (div) {
       let height = Number(window.innerHeight);
@@ -59,11 +59,11 @@ export class LoginHomeComponent {
       if (height > width) {
         this.isPortrait = true;
         this.mobileMode = `portrait: height: ${height}, width: ${width} `;
-        document.getElementById("block-ui__wrapper").classList.remove("block-ui__wrapper");
+        document.getElementById('block-ui__wrapper').classList.remove('display');
       } else {
         this.isPortrait = false;
         this.mobileMode = `landsacape: height: ${height}, width: ${width} `;
-        document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
+        document.getElementById('block-ui__wrapper').classList.add('display');
       }
     }
   }
