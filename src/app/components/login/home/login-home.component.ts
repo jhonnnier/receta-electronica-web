@@ -27,6 +27,7 @@ export class LoginHomeComponent {
   errorShow = false;
   i18: any;
   mobileMode = ''
+  // isMobile = isMobile;
   height = 0;
   width = 0;
 
@@ -40,6 +41,7 @@ export class LoginHomeComponent {
   ) {
     this.getI18();
     this.loginFormInit();
+    this.onOrientationChange();
   }
 
   @HostListener('window:orientationchange')
@@ -55,10 +57,10 @@ export class LoginHomeComponent {
       console.log(`height: ${height}, width: ${width} `);
 
       if (height > width) {
-        this.mobileMode = 'portrait';
+        this.mobileMode = `portrait: height: ${height}, width: ${width} `;
         document.getElementById("block-ui__wrapper").classList.remove("block-ui__wrapper");
       } else {
-        this.mobileMode = 'landsacape';
+        this.mobileMode = `landsacape: height: ${height}, width: ${width} `;
         document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
       }
     }
