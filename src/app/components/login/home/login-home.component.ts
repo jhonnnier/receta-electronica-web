@@ -51,19 +51,19 @@ export class LoginHomeComponent {
     const div = document.getElementById('block-ui__wrapper');
 
     if (div) {
-      let height = Number(window.innerHeight);
-      let width = Number(window.innerWidth);
+      const height = Number(window.innerHeight);
+      const width = Number(window.innerWidth);
 
       console.log(`height: ${height}, width: ${width} `);
 
       if (height > width) {
         this.isPortrait = true;
-        this.mobileMode = `portrait: height: ${height}, width: ${width} `;
-        document.getElementById('block-ui__wrapper').classList.remove('display');
+        this.mobileMode = `Portrait: height: ${height}, width: ${width} `;
+        div.classList.remove('block-ui__wrapper_2');
       } else {
         this.isPortrait = false;
-        this.mobileMode = `landsacape: height: ${height}, width: ${width} `;
-        document.getElementById('block-ui__wrapper').classList.add('display');
+        this.mobileMode = `Landsacape: height: ${height}, width: ${width} `;
+        div.classList.add('block-ui__wrapper_2');
       }
     }
   }
