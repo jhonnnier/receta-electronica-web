@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, HostListener, NgZone} from '@angular/core';
+import {Component, HostListener, NgZone} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationDetails, CognitoUser, CognitoUserPool} from 'amazon-cognito-identity-js';
 import {Router} from "@angular/router";
@@ -18,7 +18,7 @@ declare let portrait: any;
   templateUrl: './login-home.component.html',
   styleUrls: ['./login-home.component.scss', '../login.component.scss']
 })
-export class LoginHomeComponent implements AfterViewInit {
+export class LoginHomeComponent {
 
   loginForm: FormGroup = <FormGroup>{};
   login: Login = <Login>{};
@@ -27,6 +27,8 @@ export class LoginHomeComponent implements AfterViewInit {
   errorShow = false;
   i18: any;
   mobileMode = ''
+  height = 0;
+  width = 0;
 
   constructor(
     private authorizationService: AuthorizationService,
@@ -40,22 +42,25 @@ export class LoginHomeComponent implements AfterViewInit {
     this.loginFormInit();
   }
 
-  ngAfterViewInit(): void {
-    this.onOrientationChange();
-  }
-
-  @HostListener('window:orientationchange', ['$event'])
+  @HostListener('window:orientationchange')
+  @HostListener('window:load')
+  @HostListener('window:resize')
   onOrientationChange() {
     const div = document.getElementById("block-ui__wrapper");
 
     if (div) {
-      if (!portrait()) {
+      let height = Number(window.innerHeight);
+      let width = Number(window.innerWidth);
+
+      console.log(`height: ${height}, width: ${width} `);
+
+      if (height > width) {
+        this.mobileMode = 'portrait';
+        document.getElementById("block-ui__wrapper").classList.remove("block-ui__wrapper");
+      } else {
+        this.mobileMode = 'landsacape';
         document.getElementById("block-ui__wrapper").classList.add("block-ui__wrapper");
-        this.mobileMode = 'en landsacape';
-        return;
       }
-      document.getElementById("block-ui__wrapper").classList.remove("block-ui__wrapper");
-      this.mobileMode = 'en portrait';
     }
   }
 
